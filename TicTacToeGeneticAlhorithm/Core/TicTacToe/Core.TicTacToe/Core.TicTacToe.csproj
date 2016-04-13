@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Declaration\INextStepCalculator.cs" />
+    <Compile Include="Declaration\INewGameFieldCreator.cs" />
+    <Compile Include="Declaration\INextStepConditionCalculator.cs" />
     <Compile Include="Declaration\IStepMaker.cs" />
+    <Compile Include="Exceptions\CellIsNotEmptyException.cs" />
     <Compile Include="Exceptions\CoordinatesAreNotCorrectException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

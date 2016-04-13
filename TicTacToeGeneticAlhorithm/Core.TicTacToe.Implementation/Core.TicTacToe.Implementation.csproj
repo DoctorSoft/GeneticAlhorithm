@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewGameFieldCreator.cs" />
+    <Compile Include="NextStepConditionCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepMaker.cs" />
   </ItemGroup>
