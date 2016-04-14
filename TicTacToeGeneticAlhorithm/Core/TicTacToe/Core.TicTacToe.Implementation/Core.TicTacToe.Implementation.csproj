@@ -40,13 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllPossibleGameFieldsProvider.cs" />
     <Compile Include="CorrectCoordinatesChecker.cs" />
     <Compile Include="FieldStateConverter.cs" />
     <Compile Include="GameFieldCellsStatisticProvider.cs" />
+    <Compile Include="GameFieldCopyMaker.cs" />
     <Compile Include="GameFieldTransparator.cs" />
     <Compile Include="GameProcessStatisticProvider.cs" />
     <Compile Include="NewGameFieldCreator.cs" />
     <Compile Include="NextStepConditionCalculator.cs" />
+    <Compile Include="PossibleStepsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepMaker.cs" />
   </ItemGroup>

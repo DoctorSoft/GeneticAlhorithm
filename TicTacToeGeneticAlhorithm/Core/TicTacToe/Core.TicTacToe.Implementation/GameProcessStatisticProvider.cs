@@ -22,7 +22,7 @@
         {
             var statistic = this.gameFieldCellsStatisticProvider.GetStatistic(gameField);
 
-            if (statistic.Values.Sum() == GameFieldConstants.CellsCount)
+            if (statistic.Where(pair => pair.Key != CellCondition.Empty).Select(pair => pair.Value).Sum() == GameFieldConstants.CellsCount)
             {
                 return new GameProcessStatistic
                            {
@@ -98,7 +98,7 @@
                     else
                     {
                         cellConditionToCalculate = gameField[x, y];
-                        cellsTogetherCount = 0;
+                        cellsTogetherCount = 1;
                     }
                 }
             }
@@ -142,7 +142,7 @@
                     else
                     {
                         cellConditionToCalculate = gameField[x, y];
-                        cellsTogetherCount = 0;
+                        cellsTogetherCount = 1;
                     }
                 }
             }
@@ -157,23 +157,23 @@
                 var cellConditionToCalculate = CellCondition.Empty;
                 var cellsTogetherCount = 0;
 
-                for (var factorY = 0; factorY <= GameFieldConstants.MaxCoordinate; factorY++)
+                for (var y = 0; y <= GameFieldConstants.MaxCoordinate; y++)
                 {
-                    if (!this.correctCoordinatesChecker.CoordinatesAreCorrect(x, x + factorY))
+                    if (!this.correctCoordinatesChecker.CoordinatesAreCorrect(x, x + y))
                     {
                         cellConditionToCalculate = CellCondition.Empty;
                         cellsTogetherCount = 0;
                         continue;
                     }
 
-                    if (gameField[x, x + factorY] == CellCondition.Empty)
+                    if (gameField[x + y, y] == CellCondition.Empty)
                     {
                         cellConditionToCalculate = CellCondition.Empty;
                         cellsTogetherCount = 0;
                         continue;
                     }
 
-                    if (gameField[x, x + factorY] == cellConditionToCalculate)
+                    if (gameField[x + y, y] == cellConditionToCalculate)
                     {
                         cellsTogetherCount++;
                         if (cellsTogetherCount == GameFieldConstants.CellsCountToWin)
@@ -184,16 +184,16 @@
                                 WinStatistic = new WinStatistic
                                 {
                                     MoveDirection = MoveDirection.LeftUp,
-                                    Y = x + factorY,
-                                    X = x
+                                    Y = y,
+                                    X = x + y
                                 }
                             };
                         }
                     }
                     else
                     {
-                        cellConditionToCalculate = gameField[x, x + factorY];
-                        cellsTogetherCount = 0;
+                        cellConditionToCalculate = gameField[x + y, y];
+                        cellsTogetherCount = 1;
                     }
                 }
             }
@@ -210,23 +210,23 @@
                 var cellConditionToCalculate = CellCondition.Empty;
                 var cellsTogetherCount = 0;
 
-                for (var factorY = 0; factorY <= GameFieldConstants.MaxCoordinate; factorY++)
+                for (var y = 0; y <= GameFieldConstants.MaxCoordinate; y++)
                 {
-                    if (!this.correctCoordinatesChecker.CoordinatesAreCorrect(x, x - factorY))
+                    if (!this.correctCoordinatesChecker.CoordinatesAreCorrect(x, x - y))
                     {
                         cellConditionToCalculate = CellCondition.Empty;
                         cellsTogetherCount = 0;
                         continue;
                     }
 
-                    if (gameField[x, x - factorY] == CellCondition.Empty)
+                    if (gameField[x - y, y] == CellCondition.Empty)
                     {
                         cellConditionToCalculate = CellCondition.Empty;
                         cellsTogetherCount = 0;
                         continue;
                     }
 
-                    if (gameField[x, x - factorY] == cellConditionToCalculate)
+                    if (gameField[x - y, y] == cellConditionToCalculate)
                     {
                         cellsTogetherCount++;
                         if (cellsTogetherCount == GameFieldConstants.CellsCountToWin)
@@ -236,17 +236,17 @@
                                 GameStatus = cellConditionToCalculate == CellCondition.Circle ? GameStatus.CircleWon : GameStatus.CrossWon,
                                 WinStatistic = new WinStatistic
                                 {
-                                    MoveDirection = MoveDirection.LeftUp,
-                                    Y = x - factorY,
-                                    X = x
+                                    MoveDirection = MoveDirection.RightUp,
+                                    Y = y,
+                                    X = x - y
                                 }
                             };
                         }
                     }
                     else
                     {
-                        cellConditionToCalculate = gameField[x, x - factorY];
-                        cellsTogetherCount = 0;
+                        cellConditionToCalculate = gameField[x - y, y];
+                        cellsTogetherCount = 1;
                     }
                 }
             }

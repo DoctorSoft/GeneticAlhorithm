@@ -4,7 +4,7 @@
     {
         public const int MaxCoordinate = 2;
 
-        public const int LineLength = MaxCoordinate - MaxCoordinate + 1;
+        public const int LineLength = MaxCoordinate + 1;
 
         public const int CellsCount = LineLength * LineLength;
 

@@ -16,7 +16,7 @@
         {
             var emptyCellCount = this.gameFieldCellsStatisticProvider.GetStatistic(gameField)[CellCondition.Empty];
 
-            return emptyCellCount % 2 == GameFieldConstants.CellsCount % 2 ? CellCondition.Circle : CellCondition.Cross;
+            return emptyCellCount % 2 != GameFieldConstants.CellsCount % 2 ? CellCondition.Circle : CellCondition.Cross;
         }
     }
 }

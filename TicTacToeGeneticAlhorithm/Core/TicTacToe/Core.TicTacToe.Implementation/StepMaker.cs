@@ -10,10 +10,13 @@
 
         private readonly ICorrectCoordinatesChecker correctCoordinatesChecker;
 
-        public StepMaker(INextStepConditionCalculator nextStepConditionCalculator, ICorrectCoordinatesChecker correctCoordinatesChecker)
+        private readonly IGameFieldCopyMaker gameFieldCopyMaker;
+
+        public StepMaker(INextStepConditionCalculator nextStepConditionCalculator, ICorrectCoordinatesChecker correctCoordinatesChecker, IGameFieldCopyMaker gameFieldCopyMaker)
         {
             this.nextStepConditionCalculator = nextStepConditionCalculator;
             this.correctCoordinatesChecker = correctCoordinatesChecker;
+            this.gameFieldCopyMaker = gameFieldCopyMaker;
         }
 
         public CellCondition[,] MakeStep(CellCondition[,] gameField, int x, int y)
@@ -23,9 +26,10 @@
 
             var stepCondition = this.nextStepConditionCalculator.GetNextTurnCondition(gameField);
 
-            gameField[x, y] = stepCondition;
+            var resultField = this.gameFieldCopyMaker.MakeFieldCopy(gameField);
+            resultField[x, y] = stepCondition;
 
-            return gameField;
+            return resultField;
         }
 
         private void CheckIfCoordinatesAreCorrect(int x, int y)
