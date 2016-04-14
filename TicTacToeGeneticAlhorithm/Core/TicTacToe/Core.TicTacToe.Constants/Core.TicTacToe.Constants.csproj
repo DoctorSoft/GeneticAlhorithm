@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="CellCondition.cs" />
     <Compile Include="GameFieldConstants.cs" />
+    <Compile Include="GameStatus.cs" />
+    <Compile Include="MoveDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

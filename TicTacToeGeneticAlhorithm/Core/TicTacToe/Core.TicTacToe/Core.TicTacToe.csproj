@@ -40,11 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Declaration\ICorrectCoordinatesChecker.cs" />
+    <Compile Include="Declaration\IGameFieldCellsStatisticProvider.cs" />
+    <Compile Include="Declaration\IGameProcessStatisticProvider.cs" />
     <Compile Include="Declaration\INewGameFieldCreator.cs" />
     <Compile Include="Declaration\INextStepConditionCalculator.cs" />
     <Compile Include="Declaration\IStepMaker.cs" />
     <Compile Include="Exceptions\CellIsNotEmptyException.cs" />
     <Compile Include="Exceptions\CoordinatesAreNotCorrectException.cs" />
+    <Compile Include="Models\GameProcessStatistic.cs" />
+    <Compile Include="Models\WinStatistic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

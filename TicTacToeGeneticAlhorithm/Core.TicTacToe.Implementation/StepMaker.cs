@@ -8,9 +8,12 @@
     {
         private readonly INextStepConditionCalculator nextStepConditionCalculator;
 
-        public StepMaker(INextStepConditionCalculator nextStepConditionCalculator)
+        private readonly ICorrectCoordinatesChecker correctCoordinatesChecker;
+
+        public StepMaker(INextStepConditionCalculator nextStepConditionCalculator, ICorrectCoordinatesChecker correctCoordinatesChecker)
         {
             this.nextStepConditionCalculator = nextStepConditionCalculator;
+            this.correctCoordinatesChecker = correctCoordinatesChecker;
         }
 
         public CellCondition[,] MakeStep(CellCondition[,] gameField, int x, int y)
@@ -27,8 +30,7 @@
 
         private void CheckIfCoordinatesAreCorrect(int x, int y)
         {
-            if (x < GameFieldConstants.MinXCoordinate || x > GameFieldConstants.MaxXCoordinate
-                || y < GameFieldConstants.MinYCoordinate || y > GameFieldConstants.MaxYCoordinate)
+            if (!this.correctCoordinatesChecker.CoordinatesAreCorrect(x, y))
             {
                 throw new CoordinatesAreNotCorrectException();
             }

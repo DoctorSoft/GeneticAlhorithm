@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CorrectCoordinatesChecker.cs" />
+    <Compile Include="GameFieldCellsStatisticProvider.cs" />
+    <Compile Include="GameProcessStatisticProvider.cs" />
     <Compile Include="NewGameFieldCreator.cs" />
     <Compile Include="NextStepConditionCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
