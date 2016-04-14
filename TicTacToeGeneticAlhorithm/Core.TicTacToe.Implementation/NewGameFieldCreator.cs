@@ -7,7 +7,7 @@
     { 
         public CellCondition[,] CreateNewGameField()
         {
-            var gameField = new CellCondition[GameFieldConstants.MaxXCoordinate + 1, GameFieldConstants.MaxYCoordinate + 1];
+            var gameField = new CellCondition[GameFieldConstants.XLength, GameFieldConstants.YLength];
 
             for (var x = GameFieldConstants.MinXCoordinate; x <= GameFieldConstants.MaxXCoordinate; x++)
             {
