@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85A08665-B1AA-4025-9F9C-494EA0C67310}</ProjectGuid>
+    <ProjectGuid>{F73384BF-1150-4F39-805F-27C8CD0EE283}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.TicTacToe.Implementation</RootNamespace>
-    <AssemblyName>Core.TicTacToe.Implementation</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Data.Model</RootNamespace>
+    <AssemblyName>Data.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -36,37 +36,17 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllPossibleGameFieldsProvider.cs" />
-    <Compile Include="CorrectCoordinatesChecker.cs" />
-    <Compile Include="FieldStateConverter.cs" />
-    <Compile Include="GameFieldCellsStatisticProvider.cs" />
-    <Compile Include="GameFieldCopyMaker.cs" />
-    <Compile Include="GameFieldTransparator.cs" />
-    <Compile Include="GameProcessStatisticProvider.cs" />
-    <Compile Include="NewGameFieldCreator.cs" />
-    <Compile Include="NextStepConditionCalculator.cs" />
-    <Compile Include="PossibleStepsProvider.cs" />
+    <Compile Include="GeneticBot\GeneticFactor.cs" />
+    <Compile Include="GeneticBot\GeneticIndividual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StepMaker.cs" />
+    <Compile Include="StatisticBot\FieldStatistic.cs" />
+    <Compile Include="TicTacToe\Game.cs" />
+    <Compile Include="TicTacToe\Field.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Shared.Common\Shared.Common.csproj">
-      <Project>{0233e7da-9ab6-4490-b72f-e0d784bf4a0e}</Project>
-      <Name>Shared.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.TicTacToe.Constants\Core.TicTacToe.Constants.csproj">
-      <Project>{d901419e-c3cf-4e15-add4-10624ca86233}</Project>
-      <Name>Core.TicTacToe.Constants</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.TicTacToe\Core.TicTacToe.csproj">
-      <Project>{edf104b4-aff5-44fc-8c19-b620326bd4be}</Project>
-      <Name>Core.TicTacToe</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

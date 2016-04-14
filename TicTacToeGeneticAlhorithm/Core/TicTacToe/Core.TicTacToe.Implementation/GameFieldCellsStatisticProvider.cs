@@ -11,9 +11,9 @@
         {
             var statistic = new Dictionary<CellCondition, int>
                                 {
-                                    [CellCondition.Circle] = 0,
-                                    [CellCondition.Cross] = 0,
-                                    [CellCondition.Empty] = 0
+                                    {CellCondition.Circle, 0},
+                                    {CellCondition.Cross, 0},
+                                    {CellCondition.Empty, 0}
                                 };
 
             for (var x = 0; x <= GameFieldConstants.MaxCoordinate; x++)

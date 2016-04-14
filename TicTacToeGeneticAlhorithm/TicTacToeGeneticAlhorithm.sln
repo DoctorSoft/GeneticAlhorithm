@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeGeneticAlhorithm", "TicTacToeGeneticAlhorithm\TicTacToeGeneticAlhorithm.csproj", "{D56CD922-935B-4B67-9F8C-C674A0CA2D56}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{27369434-4983-43F8-A70E-AF483389B0CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeTests", "Tests\TicTacToeTests\TicTacToeTests.csproj", "{CFA18D46-2A68-4965-9EA7-5ADF78E54040}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{32D0CD35-E1F5-4F0F-8CCE-B395CA964801}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Model", "Data\Data.Model\Data.Model.csproj", "{F73384BF-1150-4F39-805F-27C8CD0EE283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,10 @@ Global
 		{CFA18D46-2A68-4965-9EA7-5ADF78E54040}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA18D46-2A68-4965-9EA7-5ADF78E54040}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA18D46-2A68-4965-9EA7-5ADF78E54040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F73384BF-1150-4F39-805F-27C8CD0EE283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F73384BF-1150-4F39-805F-27C8CD0EE283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F73384BF-1150-4F39-805F-27C8CD0EE283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F73384BF-1150-4F39-805F-27C8CD0EE283}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,5 +78,6 @@ Global
 		{85A08665-B1AA-4025-9F9C-494EA0C67310} = {F6C7726E-BB79-4776-9FC7-E7B7568261BB}
 		{0233E7DA-9AB6-4490-B72F-E0D784BF4A0E} = {42D8268E-C8E6-41AE-830A-45AA1B8BEF79}
 		{CFA18D46-2A68-4965-9EA7-5ADF78E54040} = {27369434-4983-43F8-A70E-AF483389B0CD}
+		{F73384BF-1150-4F39-805F-27C8CD0EE283} = {32D0CD35-E1F5-4F0F-8CCE-B395CA964801}
 	EndGlobalSection
 EndGlobal
