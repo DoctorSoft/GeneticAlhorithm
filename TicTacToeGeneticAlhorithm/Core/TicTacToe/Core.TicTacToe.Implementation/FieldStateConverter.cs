@@ -1,15 +1,22 @@
 ﻿namespace Core.TicTacToe.Implementation
 {
+    using System.Collections.Generic;
+
     using Core.TicTacToe.Constants;
     using Core.TicTacToe.Declaration;
+
+    using Shared.Common.Extensions;
 
     public class FieldStateConverter : IFieldStateConverter
     {
         private readonly INewGameFieldCreator newGameFieldCreator;
 
-        public FieldStateConverter(INewGameFieldCreator newGameFieldCreator)
+        private readonly IGameFieldTransparator gameFieldTransparator;
+
+        public FieldStateConverter(INewGameFieldCreator newGameFieldCreator, IGameFieldTransparator gameFieldTransparator)
         {
             this.newGameFieldCreator = newGameFieldCreator;
+            this.gameFieldTransparator = gameFieldTransparator;
         }
 
         public string GameFieldToString(CellCondition[,] gameField)
@@ -77,6 +84,22 @@
             }
 
             return gameField;
+        }
+
+        public List<string> GetSimiliarGameFieldStringList(CellCondition[,] gameField)
+        {
+            var resultList = new List<string>();
+
+            var orinalGameFieldCode = this.GameFieldToString(gameField);
+            resultList.Add(orinalGameFieldCode);
+            resultList.Add(orinalGameFieldCode.Reverse());
+
+            var transparatedGameField = this.gameFieldTransparator.GetTransparation(gameField);
+            var transparatedGameFieldCode = this.GameFieldToString(transparatedGameField);
+            resultList.Add(transparatedGameFieldCode);
+            resultList.Add(transparatedGameFieldCode.Reverse());
+
+            return resultList;
         }
     }
 }

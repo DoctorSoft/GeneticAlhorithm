@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85A08665-B1AA-4025-9F9C-494EA0C67310}</ProjectGuid>
+    <ProjectGuid>{0233E7DA-9AB6-4490-B72F-E0D784BF4A0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.TicTacToe.Implementation</RootNamespace>
-    <AssemblyName>Core.TicTacToe.Implementation</AssemblyName>
+    <RootNamespace>Shared.Common</RootNamespace>
+    <AssemblyName>Shared.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,25 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CorrectCoordinatesChecker.cs" />
-    <Compile Include="FieldStateConverter.cs" />
-    <Compile Include="GameFieldCellsStatisticProvider.cs" />
-    <Compile Include="GameFieldTransparator.cs" />
-    <Compile Include="GameProcessStatisticProvider.cs" />
-    <Compile Include="NewGameFieldCreator.cs" />
-    <Compile Include="NextStepConditionCalculator.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StepMaker.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\TicTacToe\Core.TicTacToe.Constants\Core.TicTacToe.Constants.csproj">
-      <Project>{d901419e-c3cf-4e15-add4-10624ca86233}</Project>
-      <Name>Core.TicTacToe.Constants</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\TicTacToe\Core.TicTacToe\Core.TicTacToe.csproj">
-      <Project>{edf104b4-aff5-44fc-8c19-b620326bd4be}</Project>
-      <Name>Core.TicTacToe</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
