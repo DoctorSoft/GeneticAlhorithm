@@ -43,6 +43,7 @@
     <Compile Include="Declaration\ICorrectCoordinatesChecker.cs" />
     <Compile Include="Declaration\IFieldStateConverter.cs" />
     <Compile Include="Declaration\IGameFieldCellsStatisticProvider.cs" />
+    <Compile Include="Declaration\IGameFieldTransparator.cs" />
     <Compile Include="Declaration\IGameProcessStatisticProvider.cs" />
     <Compile Include="Declaration\INewGameFieldCreator.cs" />
     <Compile Include="Declaration\INextStepConditionCalculator.cs" />

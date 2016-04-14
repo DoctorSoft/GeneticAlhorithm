@@ -16,9 +16,9 @@
                                     [CellCondition.Empty] = 0
                                 };
 
-            for (var x = GameFieldConstants.MinXCoordinate; x <= GameFieldConstants.MaxXCoordinate; x++)
+            for (var x = 0; x <= GameFieldConstants.MaxCoordinate; x++)
             {
-                for (var y = GameFieldConstants.MinYCoordinate; y <= GameFieldConstants.MaxYCoordinate; y++)
+                for (var y = 0; y <= GameFieldConstants.MaxCoordinate; y++)
                 {
                     statistic[gameField[x, y]]++;
                 }

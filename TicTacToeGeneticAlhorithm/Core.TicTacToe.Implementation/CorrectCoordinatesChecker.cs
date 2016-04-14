@@ -8,8 +8,8 @@
         public bool CoordinatesAreCorrect(int x, int y)
         {
             var result =
-                !(x < GameFieldConstants.MinXCoordinate || x > GameFieldConstants.MaxXCoordinate
-                  || y < GameFieldConstants.MinYCoordinate || y > GameFieldConstants.MaxYCoordinate);
+                !(x < 0 || x > GameFieldConstants.MaxCoordinate
+                  || y < 0 || y > GameFieldConstants.MaxCoordinate);
 
             return result;
         }

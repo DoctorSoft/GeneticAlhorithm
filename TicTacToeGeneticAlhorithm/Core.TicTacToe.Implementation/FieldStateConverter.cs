@@ -16,9 +16,9 @@
         {
             var resultLine = string.Empty;
 
-            for (var x = GameFieldConstants.MinXCoordinate; x <= GameFieldConstants.MaxXCoordinate; x++)
+            for (var x = 0; x <= GameFieldConstants.MaxCoordinate; x++)
             {
-                for (var y = GameFieldConstants.MinYCoordinate; y <= GameFieldConstants.MaxYCoordinate; y++)
+                for (var y = 0; y <= GameFieldConstants.MaxCoordinate; y++)
                 {
                     switch (gameField[x, y])
                     {
@@ -41,17 +41,17 @@
         {
             var gameField = this.newGameFieldCreator.CreateNewGameField();
 
-            var x = GameFieldConstants.MinXCoordinate;
-            var y = GameFieldConstants.MinYCoordinate;
+            var x = 0;
+            var y = 0;
 
             foreach (var nextSymbol in value)
             {
-                if (x >= GameFieldConstants.MaxXCoordinate)
+                if (x >= GameFieldConstants.MaxCoordinate)
                 {
-                    x = GameFieldConstants.MinXCoordinate;
+                    x = 0;
                     y++;
 
-                    if (y > GameFieldConstants.MaxYCoordinate)
+                    if (y > GameFieldConstants.MaxCoordinate)
                     {
                         break;
                     }

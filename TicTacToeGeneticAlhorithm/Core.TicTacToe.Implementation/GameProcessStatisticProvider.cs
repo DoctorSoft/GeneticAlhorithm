@@ -64,12 +64,12 @@
 
         public GameProcessStatistic GetWinnerInRow(CellCondition[,] gameField)
         {
-            for (var y = GameFieldConstants.MinYCoordinate; y <= GameFieldConstants.MaxYCoordinate; y++)
+            for (var y = 0; y <= GameFieldConstants.MaxCoordinate; y++)
             {
                 var cellConditionToCalculate = CellCondition.Empty;
                 var cellsTogetherCount = 0;
 
-                for (var x = GameFieldConstants.MinXCoordinate; x <= GameFieldConstants.MaxXCoordinate; x++)
+                for (var x = 0; x <= GameFieldConstants.MaxCoordinate; x++)
                 {
                     if (gameField[x, y] == CellCondition.Empty)
                     {
@@ -108,12 +108,12 @@
 
         public GameProcessStatistic GetWinnerInColumn(CellCondition[,] gameField)
         {
-            for (var x = GameFieldConstants.MinXCoordinate; x <= GameFieldConstants.MaxXCoordinate; x++)
+            for (var x = 0; x <= GameFieldConstants.MaxCoordinate; x++)
             {
                 var cellConditionToCalculate = CellCondition.Empty;
                 var cellsTogetherCount = 0;
 
-                for (var y = GameFieldConstants.MinYCoordinate; y <= GameFieldConstants.MaxYCoordinate; y++)
+                for (var y = 0; y <= GameFieldConstants.MaxCoordinate; y++)
                 {
                     if (gameField[x, y] == CellCondition.Empty)
                     {
@@ -152,12 +152,12 @@
 
         public GameProcessStatistic GetWinnerInRightDownDiagonal(CellCondition[,] gameField)
         {
-            for (var x = GameFieldConstants.MinXCoordinate - GameFieldConstants.YLength + 1; x <= GameFieldConstants.MaxXCoordinate; x++)
+            for (var x = -GameFieldConstants.MaxCoordinate; x <= GameFieldConstants.MaxCoordinate; x++)
             {
                 var cellConditionToCalculate = CellCondition.Empty;
                 var cellsTogetherCount = 0;
 
-                for (var factorY = GameFieldConstants.MinYCoordinate; factorY <= GameFieldConstants.MaxYCoordinate; factorY++)
+                for (var factorY = 0; factorY <= GameFieldConstants.MaxCoordinate; factorY++)
                 {
                     if (!this.correctCoordinatesChecker.CoordinatesAreCorrect(x, x + factorY))
                     {
@@ -203,12 +203,14 @@
 
         public GameProcessStatistic GetWinnerInLeftDownDiagonal(CellCondition[,] gameField)
         {
-            for (var x = GameFieldConstants.MinXCoordinate; x <= GameFieldConstants.MaxXCoordinate + GameFieldConstants.YLength - 1; x++)
+            const int DiagonalLineCount = GameFieldConstants.MaxCoordinate * 2 + 1;
+
+            for (var x = 0; x <= DiagonalLineCount; x++)
             {
                 var cellConditionToCalculate = CellCondition.Empty;
                 var cellsTogetherCount = 0;
 
-                for (var factorY = GameFieldConstants.MinYCoordinate; factorY <= GameFieldConstants.MaxYCoordinate; factorY++)
+                for (var factorY = 0; factorY <= GameFieldConstants.MaxCoordinate; factorY++)
                 {
                     if (!this.correctCoordinatesChecker.CoordinatesAreCorrect(x, x - factorY))
                     {
