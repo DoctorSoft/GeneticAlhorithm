@@ -15,9 +15,10 @@
             this.Property(factor => factor.GeneticFactorId).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(factor => factor.Factor).IsRequired();
+            this.Property(factor => factor.FieldId).IsRequired();
 
             this.HasRequired(factor => factor.Field).WithMany(field => field.GeneticFactors);
-            this.HasRequired(factor => factor.GeneticIndividual).WithMany(individual => individual.GeneticFactors);
+            this.HasRequired(factor => factor.GeneticIndividual).WithMany(individual => individual.GeneticFactors).HasForeignKey(factor => factor.FieldId);
         }
     }
 }

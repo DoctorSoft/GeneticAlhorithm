@@ -9,6 +9,8 @@ namespace Data.Model.GeneticBot
 
         public int Factor { get; set; }
 
+        public int FieldId { get; set; }
+
         public Field Field { get; set; }
 
         public GeneticIndividual GeneticIndividual { get; set; }

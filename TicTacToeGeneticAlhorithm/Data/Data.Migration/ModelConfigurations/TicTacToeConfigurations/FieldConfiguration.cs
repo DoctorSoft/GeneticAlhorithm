@@ -21,7 +21,7 @@
 
             this.HasOptional(field => field.FieldStatistic).WithRequired(statistic => statistic.Field);
             this.HasMany(field => field.Games).WithRequired(game => game.Field);
-            this.HasMany(field => field.GeneticFactors).WithRequired(factor => factor.Field);
+            this.HasMany(field => field.GeneticFactors).WithRequired(factor => factor.Field).HasForeignKey(factor => factor.FieldId);
         }
     }
 }

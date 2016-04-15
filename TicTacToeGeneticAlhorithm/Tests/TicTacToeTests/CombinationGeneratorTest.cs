@@ -3,7 +3,6 @@
     using System.Linq;
 
     using Core.TicTacToe.Declaration;
-    using Core.TicTacToe.Implementation;
 
     using Infrastructure.DI;
 

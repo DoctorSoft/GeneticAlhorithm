@@ -50,14 +50,12 @@ namespace Data.Migration.Migrations
                     {
                         GeneticFactorId = c.Int(nullable: false, identity: true),
                         Factor = c.Int(nullable: false),
-                        GeneticIndividual_GeneticIndividualId = c.Int(nullable: false),
-                        Field_FieldId = c.Int(nullable: false),
+                        FieldId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.GeneticFactorId)
-                .ForeignKey("dbo.GeneticIndividual", t => t.GeneticIndividual_GeneticIndividualId, cascadeDelete: true)
-                .ForeignKey("dbo.Field", t => t.Field_FieldId, cascadeDelete: true)
-                .Index(t => t.GeneticIndividual_GeneticIndividualId)
-                .Index(t => t.Field_FieldId);
+                .ForeignKey("dbo.GeneticIndividual", t => t.FieldId, cascadeDelete: true)
+                .ForeignKey("dbo.Field", t => t.FieldId, cascadeDelete: true)
+                .Index(t => t.FieldId);
             
             CreateTable(
                 "dbo.GeneticIndividual",
@@ -75,12 +73,11 @@ namespace Data.Migration.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.GeneticFactor", "Field_FieldId", "dbo.Field");
-            DropForeignKey("dbo.GeneticFactor", "GeneticIndividual_GeneticIndividualId", "dbo.GeneticIndividual");
+            DropForeignKey("dbo.GeneticFactor", "FieldId", "dbo.Field");
+            DropForeignKey("dbo.GeneticFactor", "FieldId", "dbo.GeneticIndividual");
             DropForeignKey("dbo.Game", "Field_FieldId", "dbo.Field");
             DropForeignKey("dbo.FieldStatistic", "FieldId", "dbo.Field");
-            DropIndex("dbo.GeneticFactor", new[] { "Field_FieldId" });
-            DropIndex("dbo.GeneticFactor", new[] { "GeneticIndividual_GeneticIndividualId" });
+            DropIndex("dbo.GeneticFactor", new[] { "FieldId" });
             DropIndex("dbo.Game", new[] { "Field_FieldId" });
             DropIndex("dbo.FieldStatistic", new[] { "FieldId" });
             DropTable("dbo.GeneticIndividual");
