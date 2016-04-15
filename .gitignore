@@ -17,3 +17,6 @@ TicTacToeGeneticAlhorithm/Shared/Shared.Common/bin/
 TicTacToeGeneticAlhorithm/Tests/TicTacToeTests/obj/
 TicTacToeGeneticAlhorithm/Tests/TicTacToeTests/bin/
 TicTacToeGeneticAlhorithm/Data/Data.Model/obj/
+TicTacToeGeneticAlhorithm/Data/Data.Migration/bin/
+TicTacToeGeneticAlhorithm/Data/Data.Migration/obj/
+TicTacToeGeneticAlhorithm/Data/Data.Model/bin/

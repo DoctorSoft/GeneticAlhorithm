@@ -4,7 +4,7 @@ namespace Data.Model.StatisticBot
 {
     public class FieldStatistic
     {
-        public int FieldStatisticId { get; set; }
+        public int FieldId { get; set; }
 
         public int Draws { get; set; }
 
