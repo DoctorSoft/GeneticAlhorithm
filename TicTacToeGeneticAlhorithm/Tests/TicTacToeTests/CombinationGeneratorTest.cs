@@ -2,9 +2,14 @@
 {
     using System.Linq;
 
+    using Core.TicTacToe.Declaration;
     using Core.TicTacToe.Implementation;
 
+    using Infrastructure.DI;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Ninject;
 
     [TestClass]
     public class CombinationGeneratorTest
@@ -12,15 +17,8 @@
         [TestMethod]
         public void GenerateCombinations()
         {
-            var provider = new AllPossibleGameFieldsProvider(
-                new NewGameFieldCreator(),
-                new FieldStateConverter(new NewGameFieldCreator(), new GameFieldTransparator(new NewGameFieldCreator())),
-                new StepMaker(
-                    new NextStepConditionCalculator(new GameFieldCellsStatisticProvider()),
-                    new CorrectCoordinatesChecker(),
-                    new GameFieldCopyMaker()),
-                new PossibleStepsProvider(),
-                new GameProcessStatisticProvider(new GameFieldCellsStatisticProvider(), new CorrectCoordinatesChecker()));
+            IKernel kernel = new StandardKernel(new TicTacToeNinjectModule());
+            var provider = kernel.Get<IAllPossibleGameFieldsProvider>();
 
             var combinations = provider.GenerateAllPossibleGameFieldCombanations();
 
