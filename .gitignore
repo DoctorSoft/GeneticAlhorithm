@@ -22,3 +22,9 @@ TicTacToeGeneticAlhorithm/Data/Data.Migration/obj/
 TicTacToeGeneticAlhorithm/Data/Data.Model/bin/
 TicTacToeGeneticAlhorithm/Infrastructure/Infrastructure.DI/bin/
 TicTacToeGeneticAlhorithm/Infrastructure/Infrastructure.DI/obj/
+TicTacToeGeneticAlhorithm/Core/MVC/Core.MVC/bin/
+TicTacToeGeneticAlhorithm/Core/MVC/Core.MVC/obj/
+TicTacToeGeneticAlhorithm/Infrastructure/Infrastructure.MVCDependencyInjection/bin/
+TicTacToeGeneticAlhorithm/Infrastructure/Infrastructure.MVCDependencyInjection/obj/
+TicTacToeGeneticAlhorithm/Core/MVC/Core.MVC.Implementation/bin/
+TicTacToeGeneticAlhorithm/Core/MVC/Core.MVC.Implementation/obj/

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Core.MVC.PlayerVsPlayer.Models.PlayerVsPlayerNewGameCommandResult
+
+<h2>Index</h2>
+
+@Model.GameId
+
+<div>(@Model.GameField[0, 0].ToString())</div>
