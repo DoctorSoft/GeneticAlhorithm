@@ -53,21 +53,6 @@
 
             foreach (var nextSymbol in value)
             {
-                if (x >= GameFieldConstants.MaxCoordinate)
-                {
-                    x = 0;
-                    y++;
-
-                    if (y > GameFieldConstants.MaxCoordinate)
-                    {
-                        break;
-                    }
-                }
-                else
-                {
-                    x++;
-                }
-
                 var cellCondition = CellCondition.Empty;
 
                 if (nextSymbol == GameFieldConvertingNames.Cross)
@@ -81,6 +66,21 @@
                 }
 
                 gameField[x, y] = cellCondition;
+
+                if (y >= GameFieldConstants.MaxCoordinate)
+                {
+                    y = 0;
+                    x++;
+
+                    if (x > GameFieldConstants.MaxCoordinate)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    y++;
+                }
             }
 
             return gameField;

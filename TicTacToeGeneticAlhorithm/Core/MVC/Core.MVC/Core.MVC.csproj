@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PlayerVsPlayer\Declarations\IPlayerVsPlayerGameCommandHandler.cs" />
+    <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerMakeStepCommand.cs" />
+    <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerMakeStepCommandResult.cs" />
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerNewGameCommand.cs" />
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerNewGameCommandResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

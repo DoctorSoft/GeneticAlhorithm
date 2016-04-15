@@ -8,6 +8,7 @@ namespace TicTacToe.MVC.Controllers
 {
     using Core.MVC.PlayerVsPlayer.Declarations;
     using Core.MVC.PlayerVsPlayer.Models;
+    using Core.TicTacToe.Constants;
 
     public class PlayerVsPlayerController : Controller
     {
@@ -22,7 +23,19 @@ namespace TicTacToe.MVC.Controllers
         public ActionResult Index()
         {
             var answer = this.playerVsPlayerGameCommandHandler.ExecuteCommand(new PlayerVsPlayerNewGameCommand());
-            return View(answer);
+            return this.View(answer);
+        }
+
+        public ActionResult MakeStep(PlayerVsPlayerMakeStepCommand command)
+        {
+            var answer = this.playerVsPlayerGameCommandHandler.ExecuteCommand(command);
+
+            if (answer.GameProcessStatistic.GameStatus != GameStatus.InProgress)
+            {
+                
+            }
+
+            return this.View(answer);
         }
     }
 }

@@ -259,6 +259,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PlayerVsPlayer\Index.cshtml" />
+    <Content Include="Views\PlayerVsPlayer\MakeStep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

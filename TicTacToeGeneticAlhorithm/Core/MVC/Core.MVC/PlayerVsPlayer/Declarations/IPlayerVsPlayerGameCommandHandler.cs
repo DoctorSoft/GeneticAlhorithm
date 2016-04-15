@@ -5,5 +5,7 @@
     public interface IPlayerVsPlayerGameCommandHandler
     {
         PlayerVsPlayerNewGameCommandResult ExecuteCommand(PlayerVsPlayerNewGameCommand command);
+
+        PlayerVsPlayerMakeStepCommandResult ExecuteCommand(PlayerVsPlayerMakeStepCommand command);
     }
 }
