@@ -28,3 +28,5 @@ TicTacToeGeneticAlhorithm/Infrastructure/Infrastructure.MVCDependencyInjection/b
 TicTacToeGeneticAlhorithm/Infrastructure/Infrastructure.MVCDependencyInjection/obj/
 TicTacToeGeneticAlhorithm/Core/MVC/Core.MVC.Implementation/bin/
 TicTacToeGeneticAlhorithm/Core/MVC/Core.MVC.Implementation/obj/
+TicTacToeGeneticAlhorithm/Core/Bot/Main/Core.Bot.Main/obj/
+TicTacToeGeneticAlhorithm/Core/Bot/Main/Core.Bot.Main.Implementation/obj/

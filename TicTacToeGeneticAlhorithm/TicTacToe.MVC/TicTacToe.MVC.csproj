@@ -276,6 +276,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Bot\Main\Core.Bot.Main\Core.Bot.Main.csproj">
+      <Project>{3ae805eb-eede-4904-a423-3f2454d455aa}</Project>
+      <Name>Core.Bot.Main</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\MVC\Core.MVC\Core.MVC.csproj">
       <Project>{ad196f89-28f3-4332-b85b-f3d0d12f5f8f}</Project>
       <Name>Core.MVC</Name>
@@ -295,6 +299,10 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.MVCDependencyInjection\Infrastructure.MVCDependencyInjection.csproj">
       <Project>{EB4E9BF9-4BA4-40A1-986B-2C2A50BBB565}</Project>
       <Name>Infrastructure.MVCDependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.Common\Shared.Common.csproj">
+      <Project>{0233e7da-9ab6-4490-b72f-e0d784bf4a0e}</Project>
+      <Name>Shared.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

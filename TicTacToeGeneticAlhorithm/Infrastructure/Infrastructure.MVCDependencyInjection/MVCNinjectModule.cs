@@ -1,4 +1,7 @@
-﻿namespace Infrastructure.MVCDependencyInjection
+﻿using Core.Bot.Main.Implementation;
+using Core.Bot.Main.Implementation.Declaration;
+
+namespace Infrastructure.MVCDependencyInjection
 {
     using Core.MVC.Implementation.PlayerVsPlayer;
     using Core.MVC.PlayerVsPlayer.Declarations;
@@ -10,6 +13,8 @@
         public override void Load()
         {
             this.Bind<IPlayerVsPlayerGameCommandHandler>().To<PlayerVsPlayerGameCommandHandler>();
+
+            this.Bind<IMonkeyBot>().To<MonkeyBot>();
         }
     }
 }
