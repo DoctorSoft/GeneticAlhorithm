@@ -49,7 +49,12 @@ namespace Core.MVC.Implementation.PlayerVsMonkeyBot
                 var field = GameHelper.GetFieldByCode(fieldCode, context);
                 var number = GameHelper.GetCodeNumber(fieldCode, field);
 
-                var game = new Game { Field = field, FieldNumber = number };
+                var game = new Game
+                {
+                    Field = field, 
+                    FieldNumber = number, 
+                    Proccess = field.FieldId.ToString()
+                };
                 context.Set<Game>().Add(game);
                 context.SaveChanges();
 
@@ -106,6 +111,7 @@ namespace Core.MVC.Implementation.PlayerVsMonkeyBot
 
                 game.Field = nextField;
                 game.FieldNumber = nextNumber;
+                game.Proccess += "|" + nextField.FieldId;
                 context.Set<Game>().AddOrUpdate(game);
                 context.SaveChanges();
 
@@ -144,6 +150,7 @@ namespace Core.MVC.Implementation.PlayerVsMonkeyBot
 
                 game.Field = nextField;
                 game.FieldNumber = nextNumber;
+                game.Proccess += "|" + nextField.FieldId;
                 context.Set<Game>().AddOrUpdate(game);
                 context.SaveChanges();
 
@@ -171,6 +178,8 @@ namespace Core.MVC.Implementation.PlayerVsMonkeyBot
 
                 var fieldCode = GameHelper.GetFieldByNumber(game.FieldNumber, field);
                 var gameField = this.fieldStateConverter.StringToGameField(fieldCode);
+
+                GameHelper.RefreshStatistic(game.GameId, GameStatus.Draw, context);
 
                 context.Set<Game>().Remove(game);
                 context.SaveChanges();
@@ -200,6 +209,8 @@ namespace Core.MVC.Implementation.PlayerVsMonkeyBot
                 var gameProcessStatistic = this.gameProcessStatisticProvider.GetGameProcessStatistic(gameField);
 
                 var winCoordinates = GameHelper.GetWinCoordinates(gameProcessStatistic);
+
+                GameHelper.RefreshStatistic(game.GameId, gameProcessStatistic.GameStatus, context);
 
                 context.Set<Game>().Remove(game);
                 context.SaveChanges();

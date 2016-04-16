@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201604151324552_Init.Designer.cs">
       <DependentUpon>201604151324552_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604162053271_AddFieldToSaveGameProccess.cs" />
+    <Compile Include="Migrations\201604162053271_AddFieldToSaveGameProccess.Designer.cs">
+      <DependentUpon>201604162053271_AddFieldToSaveGameProccess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelConfigurations\GeneticBotConfiguratipons\GeneticFactorConfiguration.cs" />
     <Compile Include="ModelConfigurations\GeneticBotConfiguratipons\GeneticIndividualConfiguration.cs" />
@@ -92,6 +96,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604151324552_Init.resx">
       <DependentUpon>201604151324552_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604162053271_AddFieldToSaveGameProccess.resx">
+      <DependentUpon>201604162053271_AddFieldToSaveGameProccess.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

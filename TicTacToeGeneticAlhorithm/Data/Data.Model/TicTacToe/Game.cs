@@ -6,6 +6,8 @@
 
         public int FieldNumber { get; set; }
 
+        public string Proccess { get; set; } 
+
         public Field Field { get; set; }
     }
 }

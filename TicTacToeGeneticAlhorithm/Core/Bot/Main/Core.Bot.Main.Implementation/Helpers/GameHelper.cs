@@ -1,15 +1,76 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using Core.TicTacToe.Constants;
 using Core.TicTacToe.Models;
 using Data.Migration.Contexts;
+using Data.Model.StatisticBot;
 using Data.Model.TicTacToe;
 
 namespace Core.Bot.Main.Implementation.Helpers
 {
     public static class GameHelper
     {
+        public static void RefreshStatistic(int gameId, GameStatus status, TicTacToeContext context)
+        {
+            var game = context.Set<Game>().FirstOrDefault(game1 => game1.GameId == gameId);
+
+            var fieldIds = game.Proccess.Split('|').Select(int.Parse).ToList();
+
+            if (status == GameStatus.CircleWon)
+            {
+                var isCircle = false;
+                foreach (var fieldId in fieldIds)
+                {
+                    var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
+                    if (isCircle)
+                    {
+                        fieldStatistic.Wins++;
+                    }
+                    else
+                    {
+                        fieldStatistic.Loses++;
+                    }
+                    context.Set<FieldStatistic>().AddOrUpdate(fieldStatistic);
+                    context.SaveChanges();
+                    isCircle = !isCircle;
+                }
+                return;
+            }
+
+            if (status == GameStatus.CrossWon)
+            {
+                var isCross = false;
+                foreach (var fieldId in fieldIds)
+                {
+                    var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
+                    if (isCross)
+                    {
+                        fieldStatistic.Wins++;
+                    }
+                    else
+                    {
+                        fieldStatistic.Loses++;
+                    }
+                    context.Set<FieldStatistic>().AddOrUpdate(fieldStatistic);
+                    context.SaveChanges();
+                    isCross = !isCross;
+                }
+                return;
+            }
+
+            foreach (var fieldId in fieldIds)
+            {
+                var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
+
+                fieldStatistic.Draws++;
+
+                context.Set<FieldStatistic>().AddOrUpdate(fieldStatistic);
+                context.SaveChanges();
+            }
+        } 
+
         public static List<Coordinates> GetWinCoordinates(GameProcessStatistic gameProcessStatistic)
         {
             var resultList = new List<Coordinates>();
