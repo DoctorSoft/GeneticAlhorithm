@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Core.TicTacToe.Models;
+﻿using Core.MVC.Implementation.Helpers;
 
 namespace Core.MVC.Implementation.PlayerVsPlayer
 {
@@ -43,8 +42,8 @@ namespace Core.MVC.Implementation.PlayerVsPlayer
                 var gameField = this.newGameFieldCreator.CreateNewGameField();
                 var fieldCode = this.fieldStateConverter.GameFieldToString(gameField);
 
-                var field = this.GetFieldByCode(fieldCode, context);
-                var number = this.GetCodeNumber(fieldCode, field);
+                var field = GameHelper.GetFieldByCode(fieldCode, context);
+                var number = GameHelper.GetCodeNumber(fieldCode, field);
 
                 var game = new Game { Field = field, FieldNumber = number };
                 context.Set<Game>().Add(game);
@@ -72,7 +71,7 @@ namespace Core.MVC.Implementation.PlayerVsPlayer
                 var game = context.Set<Game>().Include(game1 => game1.Field).FirstOrDefault(game1 => game1.GameId == command.GameId);
                 var field = game.Field;
 
-                var fieldCode = this.GetFieldByNumber(game.FieldNumber, field);
+                var fieldCode = GameHelper.GetFieldByNumber(game.FieldNumber, field);
                 var gameField = this.fieldStateConverter.StringToGameField(fieldCode);
 
                 CellCondition[,] nextGameField;
@@ -95,8 +94,8 @@ namespace Core.MVC.Implementation.PlayerVsPlayer
                 }
 
                 var nextFieldCode = this.fieldStateConverter.GameFieldToString(nextGameField);
-                var nextField = this.GetFieldByCode(nextFieldCode, context);
-                var nextNumber = this.GetCodeNumber(nextFieldCode, nextField);
+                var nextField = GameHelper.GetFieldByCode(nextFieldCode, context);
+                var nextNumber = GameHelper.GetCodeNumber(nextFieldCode, nextField);
 
                 var gameProcessStatistic = this.gameProcessStatisticProvider.GetGameProcessStatistic(nextGameField);
 
@@ -126,12 +125,12 @@ namespace Core.MVC.Implementation.PlayerVsPlayer
                 var game = context.Set<Game>().Include(game1 => game1.Field).FirstOrDefault(game1 => game1.GameId == command.GameId);
                 var field = game.Field;
 
-                var fieldCode = this.GetFieldByNumber(game.FieldNumber, field);
+                var fieldCode = GameHelper.GetFieldByNumber(game.FieldNumber, field);
                 var gameField = this.fieldStateConverter.StringToGameField(fieldCode);
 
                 var gameProcessStatistic = this.gameProcessStatisticProvider.GetGameProcessStatistic(gameField);
 
-                var winCoordinates = this.GetWinCoordinates(gameProcessStatistic);
+                var winCoordinates = GameHelper.GetWinCoordinates(gameProcessStatistic);
 
                 context.Set<Game>().Remove(game);
                 context.SaveChanges();
@@ -156,7 +155,7 @@ namespace Core.MVC.Implementation.PlayerVsPlayer
                 var game = context.Set<Game>().Include(game1 => game1.Field).FirstOrDefault(game1 => game1.GameId == command.GameId);
                 var field = game.Field;
 
-                var fieldCode = this.GetFieldByNumber(game.FieldNumber, field);
+                var fieldCode = GameHelper.GetFieldByNumber(game.FieldNumber, field);
                 var gameField = this.fieldStateConverter.StringToGameField(fieldCode);
 
                 context.Set<Game>().Remove(game);
@@ -171,106 +170,6 @@ namespace Core.MVC.Implementation.PlayerVsPlayer
 
             return result;
         }
-
-        private List<Coordinates> GetWinCoordinates(GameProcessStatistic gameProcessStatistic)
-        {
-            var resultList = new List<Coordinates>();
-
-            if (gameProcessStatistic.WinStatistic.MoveDirection == MoveDirection.Left)
-            {
-                for (var x = 0; x < GameFieldConstants.CellsCountToWin; x++)
-                {
-                    resultList.Add(new Coordinates
-                    {
-                        X = gameProcessStatistic.WinStatistic.X - x,
-                        Y = gameProcessStatistic.WinStatistic.Y
-                    });
-                }
-
-                return resultList;
-            }
-
-            if (gameProcessStatistic.WinStatistic.MoveDirection == MoveDirection.Up)
-            {
-                for (var y = 0; y < GameFieldConstants.CellsCountToWin; y++)
-                {
-                    resultList.Add(new Coordinates
-                    {
-                        X = gameProcessStatistic.WinStatistic.X,
-                        Y = gameProcessStatistic.WinStatistic.Y - y 
-                    });
-                }
-
-                return resultList;
-            }
-
-            if (gameProcessStatistic.WinStatistic.MoveDirection == MoveDirection.LeftUp)
-            {
-                for (var factor = 0; factor < GameFieldConstants.CellsCountToWin; factor++)
-                {
-                    resultList.Add(new Coordinates
-                    {
-                        X = gameProcessStatistic.WinStatistic.X - factor,
-                        Y = gameProcessStatistic.WinStatistic.Y - factor
-                    });
-                }
-
-                return resultList;
-            }
-
-            for (var factor = 0; factor < GameFieldConstants.CellsCountToWin; factor++)
-            {
-                resultList.Add(new Coordinates
-                {
-                    X = gameProcessStatistic.WinStatistic.X + factor,
-                    Y = gameProcessStatistic.WinStatistic.Y - factor
-                });
-            }
-
-            return resultList;
-        }
-
-        private Field GetFieldByCode(string fieldCode, TicTacToeContext context)
-        {
-            return context.Set<Field>().FirstOrDefault(field1 => field1.FirstVariant == fieldCode
-                                                                          || field1.SecondVariant == fieldCode
-                                                                          || field1.ThirdVariant == fieldCode
-                                                                          || field1.FourthVariant == fieldCode);
-        }
-
-        private int GetCodeNumber(string fieldCode, Field field)
-        {
-            if (field.FirstVariant == fieldCode)
-            {
-                return 1;
-            }
-
-            if (field.SecondVariant == fieldCode)
-            {
-                return 2;
-            }
-
-            if (field.ThirdVariant == fieldCode)
-            {
-                return 3;
-            }
-
-            return 4;
-        }
-
-        private string GetFieldByNumber(int number, Field field)
-        {
-            switch (number)
-            {
-                case 1:
-                    return field.FirstVariant;
-                case 2:
-                    return field.SecondVariant;
-                case 3:
-                    return field.ThirdVariant;
-            }
-
-            return field.FourthVariant;
-        }
+        
     }
 }
