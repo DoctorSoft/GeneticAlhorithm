@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\GameHelper.cs" />
     <Compile Include="PlayerVsMonkeyBot\PlayerVsMonkeyBotCommandHandler.cs" />
     <Compile Include="PlayerVsPlayer\PlayerVsPlayerGameCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,10 +74,6 @@
     <ProjectReference Include="..\..\Bot\Main\Core.Bot.Main.Implementation\Core.Bot.Main.Implementation.csproj">
       <Project>{DEE6C0AF-C587-4D72-ACBF-91A384E68207}</Project>
       <Name>Core.Bot.Main.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Bot\Main\Core.Bot.Main\Core.Bot.Main.csproj">
-      <Project>{3AE805EB-EEDE-4904-A423-3F2454D455AA}</Project>
-      <Name>Core.Bot.Main</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\TicTacToe\Core.TicTacToe.Constants\Core.TicTacToe.Constants.csproj">
       <Project>{d901419e-c3cf-4e15-add4-10624ca86233}</Project>

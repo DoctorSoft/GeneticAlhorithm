@@ -1,4 +1,4 @@
-﻿using Core.MVC.Implementation.Helpers;
+﻿using Core.Bot.Main.Implementation.Helpers;
 
 namespace Core.MVC.Implementation.PlayerVsPlayer
 {

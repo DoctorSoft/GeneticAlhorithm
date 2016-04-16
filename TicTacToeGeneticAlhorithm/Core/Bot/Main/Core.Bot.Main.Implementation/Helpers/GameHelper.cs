@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Core.TicTacToe.Constants;
 using Core.TicTacToe.Models;
 using Data.Migration.Contexts;
 using Data.Model.TicTacToe;
 
-namespace Core.MVC.Implementation.Helpers
+namespace Core.Bot.Main.Implementation.Helpers
 {
     public static class GameHelper
     {
@@ -69,10 +70,10 @@ namespace Core.MVC.Implementation.Helpers
 
         public static Field GetFieldByCode(string fieldCode, TicTacToeContext context)
         {
-            return context.Set<Field>().FirstOrDefault(field1 => field1.FirstVariant == fieldCode
-                                                                          || field1.SecondVariant == fieldCode
-                                                                          || field1.ThirdVariant == fieldCode
-                                                                          || field1.FourthVariant == fieldCode);
+            return context.Set<Field>().Include(field => field.FieldStatistic).FirstOrDefault(field1 => field1.FirstVariant == fieldCode
+                                                                                              || field1.SecondVariant == fieldCode
+                                                                                              || field1.ThirdVariant == fieldCode
+                                                                                              || field1.FourthVariant == fieldCode);
         }
 
         public static int GetCodeNumber(string fieldCode, Field field)

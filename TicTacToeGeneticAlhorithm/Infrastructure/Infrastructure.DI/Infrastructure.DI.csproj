@@ -52,10 +52,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Bot\Main\Core.Bot.Main\Core.Bot.Main.csproj">
-      <Project>{3ae805eb-eede-4904-a423-3f2454d455aa}</Project>
-      <Name>Core.Bot.Main</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\TicTacToe\Core.TicTacToe.Constants\Core.TicTacToe.Constants.csproj">
       <Project>{d901419e-c3cf-4e15-add4-10624ca86233}</Project>
       <Name>Core.TicTacToe.Constants</Name>

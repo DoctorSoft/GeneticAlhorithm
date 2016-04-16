@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Core.Bot.Main.Implementation.Declaration;
-using Core.MVC.Implementation.Helpers;
+using Core.Bot.Main.Implementation.Helpers;
 using Core.MVC.PlayerVsMonkeyBot.Declarations;
 using Core.MVC.PlayerVsMonkeyBot.Models;
 using Core.TicTacToe.Constants;
