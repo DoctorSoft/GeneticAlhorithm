@@ -7,5 +7,9 @@
         PlayerVsPlayerNewGameCommandResult ExecuteCommand(PlayerVsPlayerNewGameCommand command);
 
         PlayerVsPlayerMakeStepCommandResult ExecuteCommand(PlayerVsPlayerMakeStepCommand command);
+
+        PlayerVsPlayerWinGameCommandResult ExecuteCommand(PlayerVsPlayerWinGameCommand command);
+
+        PlayerVsPlayerTakeDrawCommandResult ExecuteCommand(PlayerVsPlayerTakeDrawCommand command);
     }
 }

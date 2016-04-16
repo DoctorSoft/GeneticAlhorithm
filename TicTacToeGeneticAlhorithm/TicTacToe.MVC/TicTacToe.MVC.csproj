@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TicTacToe.MVC</RootNamespace>
     <AssemblyName>TicTacToe.MVC</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -260,6 +260,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PlayerVsPlayer\Index.cshtml" />
     <Content Include="Views\PlayerVsPlayer\MakeStep.cshtml" />
+    <Content Include="Views\PlayerVsPlayer\WinGame.cshtml" />
+    <Content Include="Views\PlayerVsPlayer\TakeDraw.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

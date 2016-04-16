@@ -1,4 +1,7 @@
-﻿namespace Core.MVC.Implementation.PlayerVsPlayer
+﻿using System.Collections.Generic;
+using Core.TicTacToe.Models;
+
+namespace Core.MVC.Implementation.PlayerVsPlayer
 {
     using System;
     using System.Data.Entity;
@@ -112,6 +115,119 @@
             }
 
             return result;
+        }
+
+        public PlayerVsPlayerWinGameCommandResult ExecuteCommand(PlayerVsPlayerWinGameCommand command)
+        {
+            PlayerVsPlayerWinGameCommandResult result;
+
+            using (var context = new TicTacToeContext())
+            {
+                var game = context.Set<Game>().Include(game1 => game1.Field).FirstOrDefault(game1 => game1.GameId == command.GameId);
+                var field = game.Field;
+
+                var fieldCode = this.GetFieldByNumber(game.FieldNumber, field);
+                var gameField = this.fieldStateConverter.StringToGameField(fieldCode);
+
+                var gameProcessStatistic = this.gameProcessStatisticProvider.GetGameProcessStatistic(gameField);
+
+                var winCoordinates = this.GetWinCoordinates(gameProcessStatistic);
+
+                context.Set<Game>().Remove(game);
+                context.SaveChanges();
+
+                result = new PlayerVsPlayerWinGameCommandResult
+                {
+                    CellSize = GameFieldConstants.LineLength,
+                    GameField = gameField,
+                    WinCoordinates = winCoordinates
+                };
+            }
+
+            return result;
+        }
+
+        public PlayerVsPlayerTakeDrawCommandResult ExecuteCommand(PlayerVsPlayerTakeDrawCommand command)
+        {
+            PlayerVsPlayerTakeDrawCommandResult result;
+
+            using (var context = new TicTacToeContext())
+            {
+                var game = context.Set<Game>().Include(game1 => game1.Field).FirstOrDefault(game1 => game1.GameId == command.GameId);
+                var field = game.Field;
+
+                var fieldCode = this.GetFieldByNumber(game.FieldNumber, field);
+                var gameField = this.fieldStateConverter.StringToGameField(fieldCode);
+
+                context.Set<Game>().Remove(game);
+                context.SaveChanges();
+
+                result = new PlayerVsPlayerTakeDrawCommandResult
+                {
+                    CellSize = GameFieldConstants.LineLength,
+                    GameField = gameField,
+                };
+            }
+
+            return result;
+        }
+
+        private List<Coordinates> GetWinCoordinates(GameProcessStatistic gameProcessStatistic)
+        {
+            var resultList = new List<Coordinates>();
+
+            if (gameProcessStatistic.WinStatistic.MoveDirection == MoveDirection.Left)
+            {
+                for (var x = 0; x < GameFieldConstants.CellsCountToWin; x++)
+                {
+                    resultList.Add(new Coordinates
+                    {
+                        X = gameProcessStatistic.WinStatistic.X - x,
+                        Y = gameProcessStatistic.WinStatistic.Y
+                    });
+                }
+
+                return resultList;
+            }
+
+            if (gameProcessStatistic.WinStatistic.MoveDirection == MoveDirection.Up)
+            {
+                for (var y = 0; y < GameFieldConstants.CellsCountToWin; y++)
+                {
+                    resultList.Add(new Coordinates
+                    {
+                        X = gameProcessStatistic.WinStatistic.X,
+                        Y = gameProcessStatistic.WinStatistic.Y - y 
+                    });
+                }
+
+                return resultList;
+            }
+
+            if (gameProcessStatistic.WinStatistic.MoveDirection == MoveDirection.LeftUp)
+            {
+                for (var factor = 0; factor < GameFieldConstants.CellsCountToWin; factor++)
+                {
+                    resultList.Add(new Coordinates
+                    {
+                        X = gameProcessStatistic.WinStatistic.X - factor,
+                        Y = gameProcessStatistic.WinStatistic.Y - factor
+                    });
+                }
+
+                return resultList;
+            }
+
+            for (var factor = 0; factor < GameFieldConstants.CellsCountToWin; factor++)
+            {
+                resultList.Add(new Coordinates
+                {
+                    X = gameProcessStatistic.WinStatistic.X + factor,
+                    Y = gameProcessStatistic.WinStatistic.Y - factor
+                });
+            }
+
+            return resultList;
         }
 
         private Field GetFieldByCode(string fieldCode, TicTacToeContext context)

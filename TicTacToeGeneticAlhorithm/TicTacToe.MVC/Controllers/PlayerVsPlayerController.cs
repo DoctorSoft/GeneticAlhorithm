@@ -32,9 +32,28 @@ namespace TicTacToe.MVC.Controllers
 
             if (answer.GameProcessStatistic.GameStatus != GameStatus.InProgress)
             {
-                
+                if (answer.GameProcessStatistic.GameStatus == GameStatus.Draw)
+                {
+                    return RedirectToAction("TakeDraw", new PlayerVsPlayerTakeDrawCommand {GameId = command.GameId});
+                }
+                else
+                {
+                    return RedirectToAction("WinGame", new PlayerVsPlayerWinGameCommand {GameId = command.GameId});
+                }
             }
 
+            return this.View(answer);
+        }
+
+        public ActionResult WinGame(PlayerVsPlayerWinGameCommand command)
+        {
+            var answer = this.playerVsPlayerGameCommandHandler.ExecuteCommand(command);
+            return this.View(answer);
+        }
+
+        public ActionResult TakeDraw(PlayerVsPlayerTakeDrawCommand command)
+        {
+            var answer = this.playerVsPlayerGameCommandHandler.ExecuteCommand(command);
             return this.View(answer);
         }
     }

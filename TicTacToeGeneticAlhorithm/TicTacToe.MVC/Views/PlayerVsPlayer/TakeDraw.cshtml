@@ -1,0 +1,35 @@
+﻿@using Core.MVC.PlayerVsPlayer.Models
+@using Core.TicTacToe.Constants
+@model PlayerVsPlayerTakeDrawCommandResult
+
+@{
+    ViewBag.Title = "TakeDraw";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TakeDraw</h2>
+
+@for (var x = 0; x < @Model.CellSize; x++)
+{
+    for (var y = 0; y < @Model.CellSize; y++)
+    {
+        <a class="btn btn-default" style="width: 50px; height: 50px; font-size: 40px; vertical-align: central">
+            @if (@Model.GameField[x, y] == CellCondition.Circle)
+            {
+                <span style="color: green">O</span>
+            }
+
+            @if (@Model.GameField[x, y] == CellCondition.Cross)
+            {
+                <span style="color: green">X</span>
+            }
+        </a>
+    }
+    <br />
+}
+
+<br/>
+
+<div>
+    <a class="btn btn-success" href=@Url.Action("Index", "PlayerVsPlayer")>Play again</a>
+</div>

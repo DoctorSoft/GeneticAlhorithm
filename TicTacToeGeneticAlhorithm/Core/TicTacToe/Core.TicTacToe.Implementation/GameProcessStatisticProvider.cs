@@ -22,15 +22,6 @@
         {
             var statistic = this.gameFieldCellsStatisticProvider.GetStatistic(gameField);
 
-            if (statistic.Where(pair => pair.Key != CellCondition.Empty).Select(pair => pair.Value).Sum() == GameFieldConstants.CellsCount)
-            {
-                return new GameProcessStatistic
-                           {
-                               WinStatistic = null,
-                               GameStatus = GameStatus.Draw
-                           };
-            }
-
             var winnerInRow = this.GetWinnerInRow(gameField);
             if (winnerInRow != null)
             {
@@ -53,6 +44,15 @@
             if (winnerInLeftDownDiagonal != null)
             {
                 return winnerInLeftDownDiagonal;
+            }
+
+            if (statistic.Where(pair => pair.Key != CellCondition.Empty).Select(pair => pair.Value).Sum() == GameFieldConstants.CellsCount)
+            {
+                return new GameProcessStatistic
+                {
+                    WinStatistic = null,
+                    GameStatus = GameStatus.Draw
+                };
             }
 
             return new GameProcessStatistic

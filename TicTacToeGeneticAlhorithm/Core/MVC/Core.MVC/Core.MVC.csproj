@@ -46,6 +46,10 @@
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerMakeStepCommandResult.cs" />
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerNewGameCommand.cs" />
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerNewGameCommandResult.cs" />
+    <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerTakeDrawCommand.cs" />
+    <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerTakeDrawCommandResult.cs" />
+    <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerWinGameCommand.cs" />
+    <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerWinGameCommandResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

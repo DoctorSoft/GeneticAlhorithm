@@ -14,7 +14,7 @@
 {
     for (var y = 0; y < @Model.CellSize; y++)
     {
-        <a href="@Url.Action("MakeStep", "PlayerVsPlayer", new PlayerVsPlayerMakeStepCommand { X = x, Y = y, GameId = @Model.GameId })" class="btn btn-default" style="width: 50px; height: 50px">
+        <a href="@Url.Action("MakeStep", "PlayerVsPlayer", new PlayerVsPlayerMakeStepCommand { X = x, Y = y, GameId = @Model.GameId })" class="btn btn-default" style="width: 50px; height: 50px; font-size: 40px; vertical-align: central">
             @if (@Model.GameField[x, y] == CellCondition.Circle)
             {
                <span>O</span>
