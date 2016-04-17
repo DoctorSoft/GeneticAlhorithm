@@ -20,7 +20,7 @@ namespace Core.Bot.Main.Implementation.Helpers
 
             if (status == GameStatus.CircleWon)
             {
-                var isCircle = false;
+                var isCircle = true;
                 foreach (var fieldId in fieldIds)
                 {
                     var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
