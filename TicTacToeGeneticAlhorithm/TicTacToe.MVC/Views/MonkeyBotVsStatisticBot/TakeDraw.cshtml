@@ -1,0 +1,49 @@
+﻿@using Core.TicTacToe.Constants
+@model Core.MVC.PlayerVsMonkeyBot.Models.PlayerVsMonkeyBotTakeDrawCommandResult
+
+@{
+    ViewBag.Title = "TakeDraw";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>It's Draw</h2>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            var delay = 200; //Your delay in milliseconds
+            setTimeout(function() {
+                 window.location = "@Url.Action("Index")";
+            }, delay);
+        });
+
+    </script>
+}
+
+@for (var x = 0; x < @Model.CellSize; x++)
+{
+    for (var y = 0; y < @Model.CellSize; y++)
+    {
+        <a class="btn btn-default" style="width: 50px; height: 50px; font-size: 40px; vertical-align: central">
+            @if (@Model.GameField[x, y] == CellCondition.Circle)
+            {
+                <span style="color: green">O</span>
+            }
+
+            @if (@Model.GameField[x, y] == CellCondition.Cross)
+            {
+                <span style="color: green">X</span>
+            }
+        </a>
+    }
+    <br />
+}
+
+<br />
+
+<div>
+    <a class="btn btn-success" href=@Url.Action("Index", "MonkeyBotVsStatisticBot")>Play again</a>
+</div>
+

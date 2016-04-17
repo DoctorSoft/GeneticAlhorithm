@@ -210,6 +210,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonkeyBotVsStatisticBotController.cs" />
     <Compile Include="Controllers\PlayerVsMonkeyBotController.cs" />
     <Compile Include="Controllers\PlayerVsPlayerController.cs" />
     <Compile Include="Controllers\PlayerVsStatisticBotController.cs" />
@@ -274,6 +275,10 @@
     <Content Include="Views\PlayerVsStatisticBot\MakeStep.cshtml" />
     <Content Include="Views\PlayerVsStatisticBot\TakeDraw.cshtml" />
     <Content Include="Views\PlayerVsStatisticBot\WinGame.cshtml" />
+    <Content Include="Views\MonkeyBotVsStatisticBot\MakeMonkeyBotStep.cshtml" />
+    <Content Include="Views\MonkeyBotVsStatisticBot\TakeDraw.cshtml" />
+    <Content Include="Views\MonkeyBotVsStatisticBot\WinGame.cshtml" />
+    <Content Include="Views\MonkeyBotVsStatisticBot\MakeStatisticBotStep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

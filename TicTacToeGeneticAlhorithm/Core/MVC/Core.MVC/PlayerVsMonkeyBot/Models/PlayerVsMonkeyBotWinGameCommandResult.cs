@@ -10,6 +10,8 @@ namespace Core.MVC.PlayerVsMonkeyBot.Models
 
         public int CellSize { get; set; }
 
-        public List<Coordinates> WinCoordinates { get; set; } 
+        public List<Coordinates> WinCoordinates { get; set; }
+
+        public string Message { get; set; }
     }
 }
