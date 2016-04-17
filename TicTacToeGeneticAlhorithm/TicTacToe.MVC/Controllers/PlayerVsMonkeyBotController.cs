@@ -1,8 +1,6 @@
 ﻿using System.Web.Mvc;
 using Core.MVC.PlayerVsMonkeyBot.Declarations;
 using Core.MVC.PlayerVsMonkeyBot.Models;
-using Core.MVC.PlayerVsPlayer.Declarations;
-using Core.MVC.PlayerVsPlayer.Models;
 using Core.TicTacToe.Constants;
 
 namespace TicTacToe.MVC.Controllers

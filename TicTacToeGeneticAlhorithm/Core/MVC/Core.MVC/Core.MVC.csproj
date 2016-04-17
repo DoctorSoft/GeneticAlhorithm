@@ -61,6 +61,17 @@
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerTakeDrawCommandResult.cs" />
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerWinGameCommand.cs" />
     <Compile Include="PlayerVsPlayer\Models\PlayerVsPlayerWinGameCommandResult.cs" />
+    <Compile Include="PlayerVsStatisticBot\Declarations\IPlayerVsStatisticBotCommandHandler.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotMakeBotStepCommand.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotMakeBotStepCommandResult.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotMakeStepCommand.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotMakeStepCommandResult.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotNewGameCommand.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotNewGameCommandResult.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotTakeDrawCommand.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotTakeDrawCommandresult.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotWinGameCommand.cs" />
+    <Compile Include="PlayerVsStatisticBot\Models\PlayerVsStatisticBotWinGameCommandResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

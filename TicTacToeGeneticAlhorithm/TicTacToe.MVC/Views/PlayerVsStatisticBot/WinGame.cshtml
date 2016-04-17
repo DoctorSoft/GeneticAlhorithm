@@ -1,0 +1,49 @@
+﻿@using Core.TicTacToe.Constants
+@model Core.MVC.PlayerVsStatisticBot.Models.PlayerVsStatisticBotWinGameCommandResult
+
+@{
+    ViewBag.Title = "WinGame";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Game is won</h2>
+
+@for (var x = 0; x < @Model.CellSize; x++)
+{
+    for (var y = 0; y < @Model.CellSize; y++)
+    {
+        <a class="btn btn-default" style="width: 50px; height: 50px; font-size: 40px; vertical-align: central">
+            @if (@Model.GameField[x, y] == CellCondition.Circle)
+            {
+                if (Model.WinCoordinates.Any(coordinates => coordinates.X == x && coordinates.Y == y))
+                {
+                    <span style="color: red">O</span>
+                }
+                else
+                {
+                    <span>O</span>
+                }
+            }
+
+            @if (@Model.GameField[x, y] == CellCondition.Cross)
+            {
+                if (Model.WinCoordinates.Any(coordinates => coordinates.X == x && coordinates.Y == y))
+                {
+                    <span style="color: red">X</span>
+                }
+                else
+                {
+                    <span>X</span>
+                }
+            }
+        </a>
+    }
+    <br />
+}
+
+<br />
+
+<div>
+    <a class="btn btn-success" href=@Url.Action("Index", "PlayerVsStatisticBot")>Play again</a>
+</div>
+

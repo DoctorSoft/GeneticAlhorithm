@@ -1,7 +1,11 @@
 ﻿using Core.Bot.Main.Implementation;
 using Core.Bot.Main.Implementation.Declaration;
+using Core.Bot.Statistic.Implementation;
+using Core.Bot.Statistic.Implementation.Declaration;
 using Core.MVC.Implementation.PlayerVsMonkeyBot;
+using Core.MVC.Implementation.PlayerVsStatisticBot;
 using Core.MVC.PlayerVsMonkeyBot.Declarations;
+using Core.MVC.PlayerVsStatisticBot.Declarations;
 
 namespace Infrastructure.MVCDependencyInjection
 {
@@ -16,8 +20,10 @@ namespace Infrastructure.MVCDependencyInjection
         {
             this.Bind<IPlayerVsPlayerGameCommandHandler>().To<PlayerVsPlayerGameCommandHandler>();
             this.Bind<IPlayerVsMonkeyBotCommandHandler>().To<PlayerVsMonkeyBotCommandHandler>();
+            this.Bind<IPlayerVsStatisticBotCommandHandler>().To<PlayerVsStatisticBotCommandHandler>();
 
             this.Bind<IMonkeyBot>().To<MonkeyBot>();
+            this.Bind<IStatisticBot>().To<StatisticBot>();
         }
     }
 }

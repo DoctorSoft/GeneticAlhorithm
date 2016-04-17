@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="PlayerVsMonkeyBot\PlayerVsMonkeyBotCommandHandler.cs" />
     <Compile Include="PlayerVsPlayer\PlayerVsPlayerGameCommandHandler.cs" />
+    <Compile Include="PlayerVsStatisticBot\PlayerVsMonkeyBotCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core.Bot.Statistic.Implementation\Core.Bot.Statistic.Implementation.csproj">
+      <Project>{1EF9AA76-A8AF-4C26-B040-EC61F49E92D0}</Project>
+      <Name>Core.Bot.Statistic.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\Data.Migration\Data.Migration.csproj">
       <Project>{9d5c9f6b-2b3e-41d6-9d8d-1761fb1471d9}</Project>
       <Name>Data.Migration</Name>

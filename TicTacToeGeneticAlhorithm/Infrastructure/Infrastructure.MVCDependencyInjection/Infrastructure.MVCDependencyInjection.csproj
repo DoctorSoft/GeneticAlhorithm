@@ -52,6 +52,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core.Bot.Statistic.Implementation\Core.Bot.Statistic.Implementation.csproj">
+      <Project>{1EF9AA76-A8AF-4C26-B040-EC61F49E92D0}</Project>
+      <Name>Core.Bot.Statistic.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\Bot\Main\Core.Bot.Main.Implementation\Core.Bot.Main.Implementation.csproj">
       <Project>{dee6c0af-c587-4d72-acbf-91a384e68207}</Project>
       <Name>Core.Bot.Main.Implementation</Name>

@@ -22,9 +22,14 @@ namespace Core.Bot.Statistic.Implementation
 
         private readonly IPossibleStepsProvider possibleStepsProvider;
 
-        public StatisticBot(IPossibleStepsProvider possibleStepsProvider)
+        public StatisticBot(IPossibleStepsProvider possibleStepsProvider, IGameProcessStatisticProvider gameProcessStatisticProvider, IStepMaker stepMaker, IFieldStateConverter fieldStateConverter, INewGameFieldCreator newGameFieldCreator)
         {
             this.possibleStepsProvider = possibleStepsProvider;
+            this.gameProcessStatisticProvider = gameProcessStatisticProvider;
+            this.stepMaker = stepMaker;
+            this.fieldStateConverter = fieldStateConverter;
+            this.newGameFieldCreator = newGameFieldCreator;
+            this.random = new Random();
         }
 
         public Coordinates GetStep(CellCondition[,] gameField, TicTacToeContext context)
