@@ -1,5 +1,4 @@
-﻿using System;
-using Core.Bot.Main.Implementation.Helpers;
+﻿using Core.Bot.Main.Implementation.Helpers;
 using Core.Bot.Statistic.Implementation.Declaration;
 using Core.TicTacToe.Constants;
 using Core.TicTacToe.Declaration;
@@ -10,26 +9,17 @@ namespace Core.Bot.Statistic.Implementation
 {
     public class StatisticBot : IStatisticBot
     {
-        private readonly Random random;
-
-        private readonly INewGameFieldCreator newGameFieldCreator;
-
         private readonly IFieldStateConverter fieldStateConverter;
 
         private readonly IStepMaker stepMaker;
 
-        private readonly IGameProcessStatisticProvider gameProcessStatisticProvider;
-
         private readonly IPossibleStepsProvider possibleStepsProvider;
 
-        public StatisticBot(IPossibleStepsProvider possibleStepsProvider, IGameProcessStatisticProvider gameProcessStatisticProvider, IStepMaker stepMaker, IFieldStateConverter fieldStateConverter, INewGameFieldCreator newGameFieldCreator)
+        public StatisticBot(IPossibleStepsProvider possibleStepsProvider, IStepMaker stepMaker, IFieldStateConverter fieldStateConverter)
         {
             this.possibleStepsProvider = possibleStepsProvider;
-            this.gameProcessStatisticProvider = gameProcessStatisticProvider;
             this.stepMaker = stepMaker;
             this.fieldStateConverter = fieldStateConverter;
-            this.newGameFieldCreator = newGameFieldCreator;
-            this.random = new Random();
         }
 
         public Coordinates GetStep(CellCondition[,] gameField, TicTacToeContext context)
@@ -46,7 +36,7 @@ namespace Core.Bot.Statistic.Implementation
 
                 var field = GameHelper.GetFieldByCode(currentFieldCode, context);
 
-                var currentFactor = this.CalculateFactor(field.FieldStatistic.Draws, field.FieldStatistic.Wins, field.FieldStatistic.Loses);
+                var currentFactor = this.CalculateFactor(field.FieldStatistic.PlayedGames, field.FieldStatistic.Score);
                 if (currentFactor > factor)
                 {
                     factor = currentFactor;
@@ -57,16 +47,14 @@ namespace Core.Bot.Statistic.Implementation
             return nextStep;
         }
 
-        public double CalculateFactor(int draws, int wins, int loses)
+        public double CalculateFactor(int playedGames, double score)
         {
-            var count = draws + wins + loses;
-
-            if (count == 0)
+            if (playedGames == 0)
             {
                 return 0.5;
             }
 
-            return (wins + 0.5*draws)/count;
+            return score / playedGames;
         }
     }
 }

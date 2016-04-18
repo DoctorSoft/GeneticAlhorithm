@@ -9,11 +9,11 @@ namespace Data.Model.GeneticBot
 
         public int GenerationNumber { get; set; }
 
-        public int Draws { get; set; }
+        public int ImportanceOrder { get; set; }
 
-        public int Wins { get; set; }
+        public double Score { get; set; }
 
-        public int Loses { get; set; }
+        public int PlayedGames { get; set; }
 
         public ICollection<GeneticFactor> GeneticFactors { get; set; }
     }

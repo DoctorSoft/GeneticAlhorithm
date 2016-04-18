@@ -13,9 +13,8 @@
             this.HasKey(statistic => statistic.FieldId);
             this.Property(statistic => statistic.FieldId).IsRequired();
 
-            this.Property(statistic => statistic.Draws).IsRequired();
-            this.Property(statistic => statistic.Loses).IsRequired();
-            this.Property(statistic => statistic.Wins).IsRequired();
+            this.Property(statistic => statistic.Score).IsRequired();
+            this.Property(statistic => statistic.PlayedGames).IsRequired();
 
             this.HasRequired(statistic => statistic.Field).WithOptional(field => field.FieldStatistic);
         }

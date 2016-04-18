@@ -17,6 +17,7 @@ namespace Core.Bot.Main.Implementation.Helpers
             var game = context.Set<Game>().FirstOrDefault(game1 => game1.GameId == gameId);
 
             var fieldIds = game.Proccess.Split('|').Select(int.Parse).ToList();
+            var winPowerFactor = 0.6 - fieldIds.Count * 0.1;
 
             if (status == GameStatus.CircleWon)
             {
@@ -26,12 +27,15 @@ namespace Core.Bot.Main.Implementation.Helpers
                     var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
                     if (isCircle)
                     {
-                        fieldStatistic.Wins++;
+                        fieldStatistic.Score += 1 + winPowerFactor;
                     }
                     else
                     {
-                        fieldStatistic.Loses++;
+                        fieldStatistic.Score += 0 - winPowerFactor;
                     }
+
+                    fieldStatistic.PlayedGames++;
+
                     context.Set<FieldStatistic>().AddOrUpdate(fieldStatistic);
                     context.SaveChanges();
                     isCircle = !isCircle;
@@ -47,12 +51,15 @@ namespace Core.Bot.Main.Implementation.Helpers
                     var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
                     if (isCross)
                     {
-                        fieldStatistic.Wins++;
+                        fieldStatistic.Score += 1 + winPowerFactor;
                     }
                     else
                     {
-                        fieldStatistic.Loses++;
+                        fieldStatistic.Score += 0 - winPowerFactor;
                     }
+
+                    fieldStatistic.PlayedGames++;
+
                     context.Set<FieldStatistic>().AddOrUpdate(fieldStatistic);
                     context.SaveChanges();
                     isCross = !isCross;
@@ -64,7 +71,8 @@ namespace Core.Bot.Main.Implementation.Helpers
             {
                 var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
 
-                fieldStatistic.Draws++;
+                fieldStatistic.Score += 0.5;
+                fieldStatistic.PlayedGames++;
 
                 context.Set<FieldStatistic>().AddOrUpdate(fieldStatistic);
                 context.SaveChanges();

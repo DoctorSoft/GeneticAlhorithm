@@ -41,9 +41,8 @@ namespace Data.Migration.Migrations
 
                                                                         FieldStatistic = new FieldStatistic
                                                                                              {
-                                                                                                 Draws = 0,
-                                                                                                 Loses = 0,
-                                                                                                 Wins = 0
+                                                                                                 PlayedGames = 0,
+                                                                                                 Score = 0
                                                                                              }
                                                                     }).ToList();
 
@@ -53,10 +52,10 @@ namespace Data.Migration.Migrations
                 var generationModels = Enumerable.Range(0, 10)
                     .Select(i => new GeneticIndividual
                                      {
-                                         Draws = 0,
-                                         Loses = 0,
-                                         Wins = 0,
-                                         GenerationNumber = 0
+                                         PlayedGames = 0,
+                                         Score = 0,
+                                         GenerationNumber = 0,
+                                         ImportanceOrder = i + 1
                                      }).ToList();
                 context.Set<GeneticIndividual>().AddRange(generationModels);
                 context.SaveChanges();

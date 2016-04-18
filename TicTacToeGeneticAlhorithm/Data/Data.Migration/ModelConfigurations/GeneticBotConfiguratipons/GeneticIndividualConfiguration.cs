@@ -14,9 +14,9 @@
             this.HasKey(individual => individual.GeneticIndividualId);
             this.Property(individual => individual.GeneticIndividualId).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            this.Property(individual => individual.Draws).IsRequired();
-            this.Property(individual => individual.Loses).IsRequired();
-            this.Property(individual => individual.Wins).IsRequired();
+            this.Property(individual => individual.PlayedGames).IsRequired();
+            this.Property(individual => individual.Score).IsRequired();
+            this.Property(individual => individual.ImportanceOrder).IsRequired();
 
             this.HasMany(individual => individual.GeneticFactors).WithRequired(factor => factor.GeneticIndividual);
         }

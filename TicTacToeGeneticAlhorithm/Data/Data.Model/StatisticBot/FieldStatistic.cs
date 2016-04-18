@@ -6,11 +6,9 @@ namespace Data.Model.StatisticBot
     {
         public int FieldId { get; set; }
 
-        public int Draws { get; set; }
+        public double Score { get; set; }
 
-        public int Wins { get; set; }
-
-        public int Loses { get; set; }
+        public int PlayedGames { get; set; }
 
         public Field Field { get; set; }
     }
