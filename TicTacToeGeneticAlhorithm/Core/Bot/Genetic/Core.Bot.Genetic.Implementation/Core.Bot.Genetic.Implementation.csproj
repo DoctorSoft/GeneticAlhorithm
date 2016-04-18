@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Declaration\IGeneticBot.cs" />
+    <Compile Include="Declaration\IGeneticBotDeveloper.cs" />
     <Compile Include="GeneticBot.cs" />
+    <Compile Include="GeneticBotDeveloper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
