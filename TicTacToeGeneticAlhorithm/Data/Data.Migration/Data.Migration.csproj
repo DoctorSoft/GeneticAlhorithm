@@ -55,21 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\TicTacToeContext.cs" />
-    <Compile Include="Migrations\201604151324552_Init.cs" />
-    <Compile Include="Migrations\201604151324552_Init.Designer.cs">
-      <DependentUpon>201604151324552_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604162053271_AddFieldToSaveGameProccess.cs" />
-    <Compile Include="Migrations\201604162053271_AddFieldToSaveGameProccess.Designer.cs">
-      <DependentUpon>201604162053271_AddFieldToSaveGameProccess.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604180808060_AddNewFactorScale.cs" />
-    <Compile Include="Migrations\201604180808060_AddNewFactorScale.Designer.cs">
-      <DependentUpon>201604180808060_AddNewFactorScale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604180909274_AddImportanceOrderFactor.cs" />
-    <Compile Include="Migrations\201604180909274_AddImportanceOrderFactor.Designer.cs">
-      <DependentUpon>201604180909274_AddImportanceOrderFactor.cs</DependentUpon>
+    <Compile Include="Migrations\201604181245195_Init.cs" />
+    <Compile Include="Migrations\201604181245195_Init.Designer.cs">
+      <DependentUpon>201604181245195_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelConfigurations\GeneticBotConfigurations\GeneticFactorConfiguration.cs" />
@@ -102,17 +90,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604151324552_Init.resx">
-      <DependentUpon>201604151324552_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604162053271_AddFieldToSaveGameProccess.resx">
-      <DependentUpon>201604162053271_AddFieldToSaveGameProccess.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604180808060_AddNewFactorScale.resx">
-      <DependentUpon>201604180808060_AddNewFactorScale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604180909274_AddImportanceOrderFactor.resx">
-      <DependentUpon>201604180909274_AddImportanceOrderFactor.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604181245195_Init.resx">
+      <DependentUpon>201604181245195_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

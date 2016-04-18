@@ -11,6 +11,8 @@ namespace Data.Model.GeneticBot
 
         public int FieldId { get; set; }
 
+        public int GeneticIndividualId { get; set; }
+
         public Field Field { get; set; }
 
         public GeneticIndividual GeneticIndividual { get; set; }

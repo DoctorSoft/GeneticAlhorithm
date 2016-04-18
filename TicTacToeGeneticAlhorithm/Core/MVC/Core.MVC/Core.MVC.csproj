@@ -41,6 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayerVsGeneticBot\Declarations\IPlayerVsGeneticBotCommandHandler.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotMakeBotStepCommand.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotMakeBotStepCommandResult.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotMakeStepCommand.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotMakeStepCommandResult.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotNewGameCommand.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotNewGameCommandResult.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotTakeDrawCommand.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotTakeDrawCommandresult.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotWinGameCommand.cs" />
+    <Compile Include="PlayerVsGeneticBot\Models\PlayerVsGeneticBotWinGameCommandResult.cs" />
     <Compile Include="PlayerVsMonkeyBot\Declarations\IPlayerVsMonkeyBotCommandHandler.cs" />
     <Compile Include="PlayerVsMonkeyBot\Models\PlayerVsMonkeyBotMakeBotStepCommand.cs" />
     <Compile Include="PlayerVsMonkeyBot\Models\PlayerVsMonkeyBotMakeBotStepCommandResult.cs" />

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayerVsGeneticBot\PlayerVsGeneticBotCommandHandler.cs" />
     <Compile Include="PlayerVsMonkeyBot\PlayerVsMonkeyBotCommandHandler.cs" />
     <Compile Include="PlayerVsPlayer\PlayerVsPlayerGameCommandHandler.cs" />
     <Compile Include="PlayerVsStatisticBot\PlayerVsMonkeyBotCommandHandler.cs" />
@@ -76,6 +77,10 @@
       <Project>{0233e7da-9ab6-4490-b72f-e0d784bf4a0e}</Project>
       <Name>Shared.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Bot\Genetic\Core.Bot.Genetic.Implementation\Core.Bot.Genetic.Implementation.csproj">
+      <Project>{25d1646e-83f0-4bc6-83dd-c030769cfcd5}</Project>
+      <Name>Core.Bot.Genetic.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Bot\Main\Core.Bot.Main.Implementation\Core.Bot.Main.Implementation.csproj">
       <Project>{DEE6C0AF-C587-4D72-ACBF-91A384E68207}</Project>
       <Name>Core.Bot.Main.Implementation</Name>
@@ -93,6 +98,7 @@
       <Name>Core.MVC</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

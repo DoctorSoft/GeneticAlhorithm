@@ -24,9 +24,8 @@ namespace Data.Migration.Migrations
                 c => new
                     {
                         FieldId = c.Int(nullable: false),
-                        Draws = c.Int(nullable: false),
-                        Wins = c.Int(nullable: false),
-                        Loses = c.Int(nullable: false),
+                        Score = c.Double(nullable: false),
+                        PlayedGames = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.FieldId)
                 .ForeignKey("dbo.Field", t => t.FieldId)
@@ -38,6 +37,7 @@ namespace Data.Migration.Migrations
                     {
                         GameId = c.Int(nullable: false, identity: true),
                         FieldNumber = c.Int(nullable: false),
+                        Proccess = c.String(),
                         Field_FieldId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.GameId)
@@ -51,11 +51,13 @@ namespace Data.Migration.Migrations
                         GeneticFactorId = c.Int(nullable: false, identity: true),
                         Factor = c.Int(nullable: false),
                         FieldId = c.Int(nullable: false),
+                        GeneticIndividualId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.GeneticFactorId)
-                .ForeignKey("dbo.GeneticIndividual", t => t.FieldId, cascadeDelete: true)
+                .ForeignKey("dbo.GeneticIndividual", t => t.GeneticIndividualId, cascadeDelete: true)
                 .ForeignKey("dbo.Field", t => t.FieldId, cascadeDelete: true)
-                .Index(t => t.FieldId);
+                .Index(t => t.FieldId)
+                .Index(t => t.GeneticIndividualId);
             
             CreateTable(
                 "dbo.GeneticIndividual",
@@ -63,9 +65,9 @@ namespace Data.Migration.Migrations
                     {
                         GeneticIndividualId = c.Int(nullable: false, identity: true),
                         GenerationNumber = c.Int(nullable: false),
-                        Draws = c.Int(nullable: false),
-                        Wins = c.Int(nullable: false),
-                        Loses = c.Int(nullable: false),
+                        ImportanceOrder = c.Int(nullable: false),
+                        Score = c.Double(nullable: false),
+                        PlayedGames = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.GeneticIndividualId);
             
@@ -74,9 +76,10 @@ namespace Data.Migration.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.GeneticFactor", "FieldId", "dbo.Field");
-            DropForeignKey("dbo.GeneticFactor", "FieldId", "dbo.GeneticIndividual");
+            DropForeignKey("dbo.GeneticFactor", "GeneticIndividualId", "dbo.GeneticIndividual");
             DropForeignKey("dbo.Game", "Field_FieldId", "dbo.Field");
             DropForeignKey("dbo.FieldStatistic", "FieldId", "dbo.Field");
+            DropIndex("dbo.GeneticFactor", new[] { "GeneticIndividualId" });
             DropIndex("dbo.GeneticFactor", new[] { "FieldId" });
             DropIndex("dbo.Game", new[] { "Field_FieldId" });
             DropIndex("dbo.FieldStatistic", new[] { "FieldId" });

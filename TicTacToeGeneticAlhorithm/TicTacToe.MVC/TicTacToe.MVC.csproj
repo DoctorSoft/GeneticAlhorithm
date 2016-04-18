@@ -212,6 +212,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MonkeyBotVsMonkeyBotController.cs" />
     <Compile Include="Controllers\MonkeyBotVsStatisticBotController.cs" />
+    <Compile Include="Controllers\PlayerVsGeneticBotController.cs" />
     <Compile Include="Controllers\PlayerVsMonkeyBotController.cs" />
     <Compile Include="Controllers\PlayerVsPlayerController.cs" />
     <Compile Include="Controllers\PlayerVsStatisticBotController.cs" />
@@ -282,6 +283,11 @@
     <Content Include="Views\MonkeyBotVsMonkeyBot\MakeMonkeyBotStep.cshtml" />
     <Content Include="Views\MonkeyBotVsMonkeyBot\TakeDraw.cshtml" />
     <Content Include="Views\MonkeyBotVsMonkeyBot\WinGame.cshtml" />
+    <Content Include="Views\PlayerVsGeneticBot\Index.cshtml" />
+    <Content Include="Views\PlayerVsGeneticBot\MakeBotStep.cshtml" />
+    <Content Include="Views\PlayerVsGeneticBot\MakeStep.cshtml" />
+    <Content Include="Views\PlayerVsGeneticBot\TakeDraw.cshtml" />
+    <Content Include="Views\PlayerVsGeneticBot\WinGame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,7 +18,7 @@
             this.Property(individual => individual.Score).IsRequired();
             this.Property(individual => individual.ImportanceOrder).IsRequired();
 
-            this.HasMany(individual => individual.GeneticFactors).WithRequired(factor => factor.GeneticIndividual);
+            this.HasMany(individual => individual.GeneticFactors).WithRequired(factor => factor.GeneticIndividual).HasForeignKey(factor => factor.GeneticIndividualId);
         }
     }
 }
