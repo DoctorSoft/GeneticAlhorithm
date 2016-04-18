@@ -261,7 +261,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PlayerVsPlayer\Index.cshtml" />
     <Content Include="Views\PlayerVsPlayer\MakeStep.cshtml" />
     <Content Include="Views\PlayerVsPlayer\WinGame.cshtml" />

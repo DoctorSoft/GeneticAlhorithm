@@ -1,4 +1,4 @@
-﻿namespace Data.Migration.ModelConfigurations.GeneticBotConfiguratipons
+﻿namespace Data.Migration.ModelConfigurations.GeneticBotConfigurations
 {
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;

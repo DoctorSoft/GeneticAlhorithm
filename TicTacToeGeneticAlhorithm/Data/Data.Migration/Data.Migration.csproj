@@ -72,8 +72,8 @@
       <DependentUpon>201604180909274_AddImportanceOrderFactor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ModelConfigurations\GeneticBotConfiguratipons\GeneticFactorConfiguration.cs" />
-    <Compile Include="ModelConfigurations\GeneticBotConfiguratipons\GeneticIndividualConfiguration.cs" />
+    <Compile Include="ModelConfigurations\GeneticBotConfigurations\GeneticFactorConfiguration.cs" />
+    <Compile Include="ModelConfigurations\GeneticBotConfigurations\GeneticIndividualConfiguration.cs" />
     <Compile Include="ModelConfigurations\StatisticBotConfigurations\FieldStatisticConfiguration.cs" />
     <Compile Include="ModelConfigurations\TicTacToeConfigurations\FieldConfiguration.cs" />
     <Compile Include="ModelConfigurations\TicTacToeConfigurations\GameConfiguration.cs" />

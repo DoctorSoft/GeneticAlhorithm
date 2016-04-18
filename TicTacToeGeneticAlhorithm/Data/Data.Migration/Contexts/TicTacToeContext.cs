@@ -2,7 +2,7 @@
 {
     using System.Data.Entity;
 
-    using Data.Migration.ModelConfigurations.GeneticBotConfiguratipons;
+    using Data.Migration.ModelConfigurations.GeneticBotConfigurations;
     using Data.Migration.ModelConfigurations.StatisticBotConfigurations;
     using Data.Migration.ModelConfigurations.TicTacToeConfigurations;
 

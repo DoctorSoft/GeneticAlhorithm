@@ -55,7 +55,7 @@ namespace Data.Migration.Migrations
                                          PlayedGames = 0,
                                          Score = 0,
                                          GenerationNumber = 0,
-                                         ImportanceOrder = i + 1
+                                         ImportanceOrder = i
                                      }).ToList();
                 context.Set<GeneticIndividual>().AddRange(generationModels);
                 context.SaveChanges();
