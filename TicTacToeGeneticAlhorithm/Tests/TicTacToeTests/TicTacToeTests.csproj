@@ -35,11 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -49,15 +58,38 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="CombinationGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NextGeneration.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core.Bot.Statistic.Implementation\Core.Bot.Statistic.Implementation.csproj">
+      <Project>{1ef9aa76-a8af-4c26-b040-ec61f49e92d0}</Project>
+      <Name>Core.Bot.Statistic.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Bot\Genetic\Core.Bot.Genetic.Implementation\Core.Bot.Genetic.Implementation.csproj">
+      <Project>{25d1646e-83f0-4bc6-83dd-c030769cfcd5}</Project>
+      <Name>Core.Bot.Genetic.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Bot\Main\Core.Bot.Main.Implementation\Core.Bot.Main.Implementation.csproj">
+      <Project>{dee6c0af-c587-4d72-acbf-91a384e68207}</Project>
+      <Name>Core.Bot.Main.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\MVC\Core.MVC.Implementation\Core.MVC.Implementation.csproj">
+      <Project>{b0c52af0-ecd2-4af6-a235-93695c78efa4}</Project>
+      <Name>Core.MVC.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\MVC\Core.MVC\Core.MVC.csproj">
+      <Project>{ad196f89-28f3-4332-b85b-f3d0d12f5f8f}</Project>
+      <Name>Core.MVC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\TicTacToe\Core.TicTacToe.Constants\Core.TicTacToe.Constants.csproj">
       <Project>{d901419e-c3cf-4e15-add4-10624ca86233}</Project>
       <Name>Core.TicTacToe.Constants</Name>
@@ -70,9 +102,21 @@
       <Project>{edf104b4-aff5-44fc-8c19-b620326bd4be}</Project>
       <Name>Core.TicTacToe</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Migration\Data.Migration.csproj">
+      <Project>{9d5c9f6b-2b3e-41d6-9d8d-1761fb1471d9}</Project>
+      <Name>Data.Migration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\Data.Model\Data.Model.csproj">
+      <Project>{f73384bf-1150-4f39-805f-27c8cd0ee283}</Project>
+      <Name>Data.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.DI\Infrastructure.DI.csproj">
       <Project>{8c88d2b1-ea58-4af0-a9ef-d31fdd7eb7f1}</Project>
       <Name>Infrastructure.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure.MVCDependencyInjection\Infrastructure.MVCDependencyInjection.csproj">
+      <Project>{eb4e9bf9-4ba4-40a1-986b-2c2a50bbb565}</Project>
+      <Name>Infrastructure.MVCDependencyInjection</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\Shared.Common\Shared.Common.csproj">
       <Project>{0233e7da-9ab6-4490-b72f-e0d784bf4a0e}</Project>
@@ -80,6 +124,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

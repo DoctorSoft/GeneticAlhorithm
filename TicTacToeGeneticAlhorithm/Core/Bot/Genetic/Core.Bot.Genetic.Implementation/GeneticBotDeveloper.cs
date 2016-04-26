@@ -1,5 +1,6 @@
 ﻿namespace Core.Bot.Genetic.Implementation
 {
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -30,6 +31,10 @@
 
         private readonly IMonkeyBot monkeyBot;
 
+        private readonly Random random;
+
+        private Dictionary<int, int> winFactors { get; set; } 
+
         public GeneticBotDeveloper(
             INewGameFieldCreator newGameFieldCreator,
             IFieldStateConverter fieldStateConverter,
@@ -44,6 +49,8 @@
             this.stepMaker = stepMaker;
             this.gameProcessStatisticProvider = gameProcessStatisticProvider;
             this.monkeyBot = monkeyBot;
+            this.random = new Random();
+            this.winFactors = new Dictionary<int, int>();
         }
 
         public void GenerateNextGeneration(TicTacToeContext context)
@@ -54,7 +61,7 @@
             {
                 var isCross = true;
 
-                for (var gameNumber = 0; gameNumber < 20; gameNumber++)
+                for (var gameNumber = 0; gameNumber < 50; gameNumber++)
                 {
                     var gameId = this.CreateNewGame(context);
                     var isGeneticBotTurn = isCross;
@@ -67,24 +74,171 @@
                     }
                     while (statistic.GameStatus == GameStatus.InProgress);
 
+                    if (statistic.GameStatus == GameStatus.Draw)
+                    {
+                        this.TakeDraw(gameId, indivadualId, context);
+                    }
+                    else
+                    {
+                        this.Win(gameId, indivadualId, isCross, context);
+                    }
+
                     isCross = !isCross;
                 }
             }
 
             var winners = this.TakeThreeWinners(context);
+
+            this.AddMutations(winners, context);
+            this.AddIntersections(winners, context);
+            this.AddNewMember(winners[0], context);
+        }
+
+        public void AddNewMember(GeneticIndividual individual, TicTacToeContext context)
+        {
+            var newIndividual = new GeneticIndividual
+            {
+                GenerationNumber = individual.GenerationNumber,
+                ImportanceOrder = 10,
+                PlayedGames = 0,
+                Score = 0,
+            };
+            context.Set<GeneticIndividual>().Add(newIndividual);
+            context.SaveChanges();
+
+            var factors =
+                context.Set<GeneticFactor>()
+                    .Where(factor => factor.GeneticIndividualId == individual.GeneticIndividualId)
+                    .ToList();
+
+            var newFactors = factors.Select(factor => new GeneticFactor
+            {
+                GeneticIndividualId = newIndividual.GeneticIndividualId,
+                Factor = this.random.Next(0, 100),
+                FieldId = factor.FieldId
+            }).ToList();
+
+            context.Set<GeneticFactor>().AddRange(newFactors);
+            context.SaveChanges();
+        }
+
+        public void AddIntersections(List<GeneticIndividual> winners, TicTacToeContext context)
+        {
+            this.AddIntersection(winners[0], winners[1], context);
+            this.AddIntersection(winners[0], winners[2], context);
+            this.AddIntersection(winners[1], winners[2], context);
+        }
+
+        public void AddIntersection(GeneticIndividual first, GeneticIndividual second, TicTacToeContext context)
+        {
+            var newIndividual = new GeneticIndividual
+            {
+                GenerationNumber = first.GenerationNumber,
+                ImportanceOrder = 7,
+                PlayedGames = 0,
+                Score = 0,
+            };
+            context.Set<GeneticIndividual>().Add(newIndividual);
+            context.SaveChanges();
+
+            var firstFactors =
+                context.Set<GeneticFactor>()
+                    .Where(factor => factor.GeneticIndividualId == first.GeneticIndividualId)
+                    .ToList();
+
+            var secondFactors =
+                context.Set<GeneticFactor>()
+                    .Where(factor => factor.GeneticIndividualId == second.GeneticIndividualId)
+                    .ToList();
+
+            var newFactors = (from firstFactor in firstFactors
+                             join secondFactor in secondFactors on firstFactor.FieldId equals secondFactor.FieldId
+                             select new GeneticFactor
+                                        {
+                                            Factor = (firstFactor.Factor + secondFactor.Factor) / 2,
+                                            FieldId = firstFactor.FieldId,
+                                            GeneticIndividualId = newIndividual.GeneticIndividualId
+                                        }).ToList();
+            context.Set<GeneticFactor>().AddRange(newFactors);
+            context.SaveChanges();
+        }
+
+        public void AddMutations(List<GeneticIndividual> winners, TicTacToeContext context)
+        {
+            foreach (var winner in winners)
+            {
+                this.AddMutation(winner, context);
+            }
+        }
+
+        public void AddMutation(GeneticIndividual individual, TicTacToeContext context)
+        {
+            var newIndividual = new GeneticIndividual
+                                    {
+                                        GenerationNumber = individual.GenerationNumber,
+                                        ImportanceOrder = 4,
+                                        PlayedGames = 0,
+                                        Score = 0,
+                                    };
+            context.Set<GeneticIndividual>().Add(newIndividual);
+            context.SaveChanges();
+
+            var factors =
+                context.Set<GeneticFactor>()
+                    .Where(factor => factor.GeneticIndividualId == individual.GeneticIndividualId)
+                    .ToList();
+
+            var newFactors = factors.Select(factor => new GeneticFactor
+                                                         {
+                                                             GeneticIndividualId = newIndividual.GeneticIndividualId,
+                                                             Factor = this.winFactors.ContainsKey(factor.FieldId) 
+                                                                        ? factor.Factor + this.winFactors[factor.FieldId] * 5
+                                                                        : factor.Factor + this.random.Next(11) - 5,
+                                                             FieldId = factor.FieldId
+                                                         })
+                                    .Select(factor => new GeneticFactor
+                                                          {
+                                                              GeneticIndividualId = factor.GeneticIndividualId,
+                                                              Factor = factor.Factor > 100 ? 100 : factor.Factor < 0 ? 0 : factor.Factor,
+                                                              FieldId = factor.FieldId
+                                                          }).ToList();
+            context.Set<GeneticFactor>().AddRange(newFactors);
+            context.SaveChanges();
         }
 
         public List<GeneticIndividual> TakeThreeWinners(TicTacToeContext context)
         {
-            var result = context.Set<GeneticIndividual>()
-                .OrderBy(individual => individual.Score / individual.PlayedGames)
-                .Take(3)
+            var individuals = context.Set<GeneticIndividual>()
+                .OrderByDescending(individual => individual.Score / individual.PlayedGames)
                 .ToList();
+
+            var result = individuals.OrderByDescending(individual => individual.Score / individual.PlayedGames).Take(3).ToList();
 
             for (var order = 0; order < result.Count; order++)
             {
                 result[order].ImportanceOrder = order;
+                result[order].GenerationNumber++;
+
+                context.Set<GeneticIndividual>().AddOrUpdate(result[order]);
             }
+
+            var individualsToRemove = individuals.Except(result).ToList();
+            foreach (var individual in individualsToRemove)
+            {
+                var factors =
+                    context.Set<GeneticFactor>()
+                        .Where(factor => factor.GeneticIndividualId == individual.GeneticIndividualId)
+                        .ToList();
+
+                foreach (var factor in factors)
+                {
+                    context.Set<GeneticFactor>().Remove(factor);
+                }
+
+                context.Set<GeneticIndividual>().Remove(individual);
+            }
+
+            context.SaveChanges();
 
             return result;
         } 
@@ -135,7 +289,6 @@
             context.Set<Game>().AddOrUpdate(game);
             context.SaveChanges();
 
-
             return result;
         }
 
@@ -161,8 +314,7 @@
             game.Proccess += "|" + nextField.FieldId;
             context.Set<Game>().AddOrUpdate(game);
             context.SaveChanges();
-
-
+            
             return result;
         }
 
@@ -182,6 +334,7 @@
             individual.PlayedGames++;
 
             context.Set<GeneticIndividual>().AddOrUpdate(individual);
+            context.SaveChanges();
         }
 
         public void Win(int gameId, int geneticIndividualId, bool isCross, TicTacToeContext context)
@@ -200,6 +353,7 @@
             context.SaveChanges();
 
             var fieldIds = game.Proccess.Split('|').Select(int.Parse).ToList();
+
             var winPowerFactor = 0.6 - fieldIds.Count * 0.1;
             var isCrossWinner = fieldIds.Count % 2 == 0;
 
@@ -209,8 +363,83 @@
             individual.Score += (isCross == isCrossWinner) ? (1 + winPowerFactor) : (0 - winPowerFactor);
             individual.PlayedGames++;
 
-            context.Set<GeneticIndividual>().AddOrUpdate(individual);
-        }
+            if (isCross == isCrossWinner)
+            {
+                if (isCross)
+                {
+                    for (var i = 1; i < fieldIds.Count; i++)
+                    {
+                        if (i % 2 != 0)
+                        {
+                            if (this.winFactors.ContainsKey(fieldIds[i]))
+                            {
+                                this.winFactors[fieldIds[i]]++;
+                            }
+                            else
+                            {
+                                this.winFactors.Add(fieldIds[i], 1);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (var i = 1; i < fieldIds.Count; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            if (this.winFactors.ContainsKey(fieldIds[i]))
+                            {
+                                this.winFactors[fieldIds[i]]++;
+                            }
+                            else
+                            {
+                                this.winFactors.Add(fieldIds[i], 1);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (isCross)
+                {
+                    for (var i = 1; i < fieldIds.Count; i++)
+                    {
+                        if (i % 2 != 0)
+                        {
+                            if (this.winFactors.ContainsKey(fieldIds[i]))
+                            {
+                                this.winFactors[fieldIds[i]]--;
+                            }
+                            else
+                            {
+                                this.winFactors.Add(fieldIds[i], -1);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (var i = 1; i < fieldIds.Count; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            if (this.winFactors.ContainsKey(fieldIds[i]))
+                            {
+                                this.winFactors[fieldIds[i]]--;
+                            }
+                            else
+                            {
+                                this.winFactors.Add(fieldIds[i], -1);
+                            }
+                        }
+                    }
+                }
+            }
 
+            context.Set<GeneticIndividual>().AddOrUpdate(individual);
+            context.SaveChanges();
+        }
     }
 }

@@ -25,9 +25,9 @@ namespace Core.MVC.Implementation.PlayerVsMonkeyBot
 
         private readonly IGameProcessStatisticProvider gameProcessStatisticProvider;
 
-        private readonly IMonkeyBot monkeyBot;
+        private readonly ILogicBot monkeyBot;
 
-        public PlayerVsMonkeyBotCommandHandler(INewGameFieldCreator newGameFieldCreator, IFieldStateConverter fieldStateConverter, IStepMaker stepMaker, IGameProcessStatisticProvider gameProcessStatisticProvider, IMonkeyBot monkeyBot)
+        public PlayerVsMonkeyBotCommandHandler(INewGameFieldCreator newGameFieldCreator, IFieldStateConverter fieldStateConverter, IStepMaker stepMaker, IGameProcessStatisticProvider gameProcessStatisticProvider, ILogicBot monkeyBot)
         {
             this.newGameFieldCreator = newGameFieldCreator;
             this.fieldStateConverter = fieldStateConverter;

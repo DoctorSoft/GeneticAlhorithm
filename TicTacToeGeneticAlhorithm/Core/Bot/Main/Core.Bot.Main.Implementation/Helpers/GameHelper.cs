@@ -17,7 +17,7 @@ namespace Core.Bot.Main.Implementation.Helpers
             var game = context.Set<Game>().FirstOrDefault(game1 => game1.GameId == gameId);
 
             var fieldIds = game.Proccess.Split('|').Select(int.Parse).ToList();
-            var winPowerFactor = 0.6 - fieldIds.Count * 0.1;
+            //// var winPowerFactor = 0.6 - fieldIds.Count * 0.1;
 
             if (status == GameStatus.CircleWon)
             {
@@ -27,11 +27,11 @@ namespace Core.Bot.Main.Implementation.Helpers
                     var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
                     if (isCircle)
                     {
-                        fieldStatistic.Score += 1 + winPowerFactor;
+                        fieldStatistic.Score += 1; //// + winPowerFactor;
                     }
                     else
                     {
-                        fieldStatistic.Score += 0 - winPowerFactor;
+                        fieldStatistic.Score += 0; //// - winPowerFactor;
                     }
 
                     fieldStatistic.PlayedGames++;
@@ -51,11 +51,11 @@ namespace Core.Bot.Main.Implementation.Helpers
                     var fieldStatistic = context.Set<FieldStatistic>().FirstOrDefault(field1 => field1.FieldId == fieldId);
                     if (isCross)
                     {
-                        fieldStatistic.Score += 1 + winPowerFactor;
+                        fieldStatistic.Score += 1; //// + winPowerFactor;
                     }
                     else
                     {
-                        fieldStatistic.Score += 0 - winPowerFactor;
+                        fieldStatistic.Score += 0; //// - winPowerFactor;
                     }
 
                     fieldStatistic.PlayedGames++;

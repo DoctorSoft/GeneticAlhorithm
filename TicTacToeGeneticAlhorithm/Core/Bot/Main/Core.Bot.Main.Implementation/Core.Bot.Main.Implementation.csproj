@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Declaration\ILogicBot.cs" />
     <Compile Include="Declaration\IMonkeyBot.cs" />
     <Compile Include="Helpers\GameHelper.cs" />
+    <Compile Include="LogicBot.cs" />
     <Compile Include="MonkeyBot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -30,6 +30,9 @@ namespace Infrastructure.MVCDependencyInjection
             this.Bind<IMonkeyBot>().To<MonkeyBot>();
             this.Bind<IStatisticBot>().To<StatisticBot>();
             this.Bind<IGeneticBot>().To<GeneticBot>();
+            this.Bind<ILogicBot>().To<LogicBot>();
+
+            this.Bind<IGeneticBotDeveloper>().To<GeneticBotDeveloper>();
         }
     }
 }
